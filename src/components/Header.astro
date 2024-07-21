@@ -13,12 +13,14 @@ import DownloadIcon from "../icons/Download.astro";
   <div class="flex flex-row justify-between items-center w-full">
     <div class="flex flex-row gap-3.5">
       <div
+        id="previous-button"
         class="bg-slate-950 bg-opacity-50 p-2.5 rounded-full
         flex items-center cursor-pointer"
       >
         <PreviousIcon />
       </div>
       <div
+        id="next-button"
         class="bg-slate-950 bg-opacity-50 p-2.5 rounded-full
       flex items-center cursor-pointer"
       >
@@ -46,6 +48,25 @@ import DownloadIcon from "../icons/Download.astro";
   </div>
 </header>
 
-<style>
-  
-</style>
+<script is:inline>
+  document.addEventListener("astro:page-load", () => {
+    const previousButton = document.getElementById("previous-button");
+    const nextButton = document.getElementById("next-button");
+
+    previousButton.addEventListener("click", () => {
+      handlePrevious();
+    });
+
+    nextButton.addEventListener("click", () => {
+      handleNext();
+    });
+  });
+
+  function handlePrevious() {
+    window.history.back();
+  }
+
+  function handleNext() {
+    window.history.forward();
+  }
+</script>

@@ -23,7 +23,7 @@ export const PlaylistCard = ({ id, name, type, author, bannerImg }) => {
     <a
       className={`flex flex-row gap-3 items-center rounded-[4px] 
         p-2 transition-all duration-150 cursor-pointer 
-      ${selectedId == id ? "bg-slate-700" : "hover:bg-slate-800"}`}
+      ${selectedId == id ? "bg-gray-500/30" : "hover:bg-gray-500/20"}`}
       onClick={(e) => handleClick(e, id)}
       href={`/playlist/${id}`}
     >

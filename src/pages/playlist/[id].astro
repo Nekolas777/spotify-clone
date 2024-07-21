@@ -31,7 +31,7 @@ const playlist = playlists.find((playlist) => playlist.id.toString() === id);
         <h1 class="text-6xl font-bold ml-[-3px]">{playlist?.name}</h1>
         <span>{playlist?.description}</span>
         <div class="flex flex-row gap-2 items-center mt-1.5">
-          <img src={playlist?.profileImg} class="w-6 h-6 rounded-full" />
+          <img src={playlist?.profileImg} class="max-w-6 rounded-full" />
           <p class="mt-[-3px]">
             <span class="font-bold">{playlist?.author}</span> • 7 canciones, 28 min,
             45 s
