@@ -1,0 +1,211 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import { Player } from "../components/Player/Player.jsx";
+import AsideMenu from "../components/AsideMenu/AsideMenu.astro";
+import Header from "../components/Header.astro";
+import "simplebar/dist/simplebar.css";
+import MainBackground from "../components/MainBackground.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions fallback="none" />
+  </head>
+  <body>
+    <div id="app" class="relative h-screen p-2 gap-2">
+      <aside class="[grid-area:aside] flex-col flex-grow-1">
+        <AsideMenu />
+      </aside>
+
+      <main
+        data-simplebar
+        class="[grid-area:main] rounded-lg flex-1 bg-[#121212] w-full h-full relative"
+      >
+        <MainBackground />
+        <Header />
+        <slot />
+      </main>
+
+      <footer class="[grid-area:player] px-2 py-1.5 z-[20] bg-black">
+        <Player />
+      </footer>
+    </div>
+
+    <style>
+      #app {
+        display: grid;
+        grid-template-areas:
+          "aside main main"
+          "player player player";
+        grid-template-columns: 350px 1fr;
+        grid-template-rows: 1fr auto;
+      }
+    </style>
+    <style is:global>
+      .border {
+        border: 1px solid red;
+      }
+
+      html {
+        font-family: system-ui, sans-serif;
+        background-color: #010101;
+        color: white;
+      }
+      code {
+        font-family:
+          Menlo,
+          Monaco,
+          Lucida Console,
+          Liberation Mono,
+          DejaVu Sans Mono,
+          Bitstream Vera Sans Mono,
+          Courier New,
+          monospace;
+      }
+
+      .playlists-container,
+      .main-container {
+        -webkit-transition: all 1s linear;
+        position: relative;
+      }
+
+      main {
+        overflow: auto;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE 10+ */
+      }
+
+      ::-webkit-scrollbar {
+        width: 14px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        scrollbar-gutter: stable;
+      }
+
+      :hover::-webkit-scrollbar {
+        opacity: 1;
+      }
+
+      .playlists-container::-webkit-scrollbar-track {
+        background: transparent;
+        margin: -10px 0;
+      }
+
+      .main-container::-webkit-scrollbar-track {
+        background: transparent;
+        margin: 0px 0 !important;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        border-radius: 0;
+        background: rgba(122, 120, 120, 0);
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      :hover::-webkit-scrollbar-thumb {
+        background: rgba(122, 120, 120, 0.5);
+        opacity: 1;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      .header-scrolled {
+        background-color: #121212;
+        transition: background-color 0.3s ease;
+      }
+    </style>
+
+    <script is:inline defer>
+      function onMouseOverColorad(el) {
+        if (el) {
+          const dataColor = el.getAttribute("data-color");
+          if (!dataColor) return;
+          window.coloradTimeout = setTimeout(
+            () => setContainerColor(dataColor),
+            200
+          );
+        }
+      }
+
+      function onMouseFocusColorad(el) {
+        if (el) {
+          const dataColor = el.getAttribute("data-color");
+          if (!dataColor) return;
+          setContainerColor(dataColor);
+        }
+      }
+
+      window.coloradTimeout = null;
+      function onMouseOutColorad() {
+        if (window.coloradTimeout) {
+          clearTimeout(window.coloradTimeout);
+          window.coloradTimeout = null;
+        }
+      }
+
+      function setContainerColor(dataColor) {
+        const mainBackground = document.getElementById("main-background");
+        const currentColor = mainBackground.getAttribute("data-color");
+
+        if (dataColor && dataColor != currentColor) {
+          mainBackground.style.setProperty("--context-color", dataColor);
+          mainBackground.setAttribute("data-color", dataColor);
+          mainBackground.style.backgroundColor = dataColor;
+        }
+      }
+
+      document.addEventListener("astro:page-load", () => {
+        const songCards = document.querySelectorAll(".songs-cards > div");
+        songCards.forEach((card) => {
+          card.addEventListener("mouseover", () => {
+            onMouseOverColorad(card);
+          });
+          card.addEventListener("mouseout", onMouseOutColorad);
+          card.addEventListener("focus", () => onMouseFocusColorad(card));
+          card.addEventListener("blur", onMouseOutColorad);
+        });
+      });
+    </script>
+
+    <script>
+      import SimpleBar from "simplebar";
+
+      document.addEventListener("astro:page-load", () => {
+        const mainContent = document.querySelector("main");
+        const scrollElement = mainContent?.querySelector(
+          ".simplebar-content-wrapper"
+        );
+
+        new SimpleBar(mainContent as HTMLElement);
+
+        if (scrollElement) {
+          scrollElement.addEventListener("scroll", () => {
+            const header = document.querySelector(".header-container");
+            //console.log(scrollElement.scrollTop);
+            if (scrollElement.scrollTop > 0) {
+              header?.classList.add("header-scrolled");
+            } else {
+              header?.classList.remove("header-scrolled");
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PlayIcon from "../../icons/Play.astro";
+import MoreOptiosnIcon from "../../icons/MoreOptionsIcon.astro";
+import { Shuffle } from "../../icons/Shuffle";
+import Download from "../../icons/Download.astro";
+import SaveIcon from "../../icons/SaveIcon.astro";
+import ListIcon from "../../icons/ListIcon.astro";
+import MusicsTable from "../../components/MusicsTable.astro";
+import { playlists } from "../../data/playlists";
+
+const { id } = Astro.params;
+
+// cast to string because the id for param is a string
+const playlist = playlists.find((playlist) => playlist.id.toString() === id);
+
+---
+
+<Layout title="Spotify Clone">
+  <section class="py-2">
+    <div class="flex flex-row gap-5 px-5 pb-8 border-b-[1px]">
+      <div class="flex">
+        <img
+          src={playlist?.bannerImg}
+          class="w-56 h-56"
+          style="box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);"
+        />
+      </div>
+      <div class="flex flex-col text-white justify-end gap-3">
+        <span class="">{playlist?.type} pública</span>
+        <h1 class="text-6xl font-bold ml-[-3px]">{playlist?.name}</h1>
+        <span>{playlist?.description}</span>
+        <div class="flex flex-row gap-2 items-center mt-1.5">
+          <img src={playlist?.profileImg} class="w-6 h-6 rounded-full" />
+          <p class="mt-[-3px]">
+            <span class="font-bold">{playlist?.author}</span> • 7 canciones, 28 min,
+            45 s
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-row px-5 py-7 items-center justify-between">
+      <div class="flex flex-row gap-[22px] items-center">
+        <div
+          class="shadow-below rounded-full bg-green-500 p-[18px] cursor-pointer flex items-center
+        justify-center hover:scale-105 transition-all duration-200 ease-out"
+        >
+          <PlayIcon />
+        </div>
+        <SaveIcon />
+        <Shuffle size={7} />
+        <Download size="7"/>
+        <MoreOptiosnIcon />
+      </div>
+      <div class="flex flex-row gap-3 items-center">
+        <span class="font-medium mt-[-1.5px]">Lista</span>
+        <ListIcon/>
+      </div>
+    </div>
+    <MusicsTable/>
+  </section>
+</Layout>

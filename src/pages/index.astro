@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import RecentSongs from "../components/Home/RecentSongs.astro"
+import PlaylistsRecommended from "../components/Home/PlaylistsRecommended.astro"
+import FavoriteArtists from "../components/Home/FavoriteArtists.astro"
+import RecentlyHeards from "../components/Home/RecentlyHeards.astro"
+import { songs } from "../data/songs";
+import { playlists } from "../data/playlists";
+import { artists } from "../data/artists";
+---
+
+<Layout title="Spotify Clone">
+  <section class="px-5 py-2 flex flex-col gap-8">
+    <RecentSongs songs={songs} />
+    <PlaylistsRecommended playlists={playlists} />
+    <FavoriteArtists artists={ artists } />
+    <RecentlyHeards/>
+  </section>
+</Layout>

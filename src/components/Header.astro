@@ -1,0 +1,51 @@
+---
+import NextIcon from "../icons/NextIcon.astro";
+import PreviousIcon from "../icons/PreviousIcon.astro";
+import NotificationIcon from "../icons/NotificationIcon.astro";
+import GithubIcon from "../icons/GithubIcon.astro";
+import DownloadIcon from "../icons/Download.astro";
+---
+
+<header
+  class="header-container px-5 overflow-y-auto min-h-20 flex items-center
+  max-h-[0px] bg-transparent sticky top-0 z-50 w-full rounded-t-lg"
+>
+  <div class="flex flex-row justify-between items-center w-full">
+    <div class="flex flex-row gap-3.5">
+      <div
+        class="bg-slate-950 bg-opacity-50 p-2.5 rounded-full
+        flex items-center cursor-pointer"
+      >
+        <PreviousIcon />
+      </div>
+      <div
+        class="bg-slate-950 bg-opacity-50 p-2.5 rounded-full
+      flex items-center cursor-pointer"
+      >
+        <NextIcon />
+      </div>
+    </div>
+    <div class="flex flex-row gap-5 items-center">
+      <button
+        class="px-4 pt-1 pb-1.5 rounded-3xl bg-white text-black font-semibold"
+      >
+        <span>Descubrir Premium</span>
+      </button>
+      <button
+        class="px-4 pt-1 pb-1.5 rounded-3xl bg-black text-white font-semibold self-stretch
+        flex flex-row items-center gap-2 border-[1px]"
+      >
+        <DownloadIcon size="4" />
+        <span class="mb-0.5">Instalar app</span>
+      </button>
+      <div class="bg-slate-950 bg-opacity-65 p-2 rounded-full cursor-pointer">
+        <NotificationIcon />
+      </div>
+      <GithubIcon />
+    </div>
+  </div>
+</header>
+
+<style>
+  
+</style>

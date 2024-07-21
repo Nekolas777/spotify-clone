@@ -1,0 +1,64 @@
+---
+import type { Song } from "../../data/songs";
+import PlayIcon from "../../icons/Play.astro";
+
+interface Props {
+  songs: Song[];
+}
+
+const { songs } = Astro.props;
+
+//const recentSongs = songs.slice(0, 8);
+---
+
+<div class="songs-cards">
+  {
+    songs.slice(0, 8).map((song) => {
+      return (
+        <div
+          class="bg-[hsla(0,0%,100%,.07)] flex flex-row cursor-pointer
+          hover:bg-[hsla(0,0%,100%,.2)] transition-all duration-300 ease"
+          data-color={song.color?.accent}
+        >
+          <img src={song.bannerImage} class="w-16 h-16" />
+          <div class="flex flex-row items-center w-full px-3">
+            <span class="text-base font-medium flex-1">{song.title}</span>
+            <div
+              class="rounded-full bg-green-500 p-2 cursor-pointer flex items-center justify-center
+          hover:scale-105 transition-all duration-200 ease-out shadow-below"
+            >
+              <PlayIcon />
+            </div>
+          </div>
+        </div>
+      );
+    })
+  }
+</div>
+
+<style>
+  .shadow-below {
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 0.2s ease-out,
+      transform 0.25s ease-out;
+  }
+
+  .shadow-below:hover {
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.35);
+    background-color: rgb(8, 218, 8);
+  }
+
+  .songs-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 16px;
+  }
+
+  .songs-cards > div:hover .shadow-below {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

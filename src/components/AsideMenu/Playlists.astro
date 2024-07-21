@@ -1,0 +1,19 @@
+---
+import {RecentsIcon} from "../../icons/RecentsIcon"; 
+import {SearchIcon} from "../../icons/SearchIcon";
+import PlaylistList from "./PlaylistList.astro";
+---
+
+<div
+  class="playlists-container mt-5 pb-1 flex-1 min-h-full max-h-[0px]
+      overflow-y-auto"
+>
+  <div class="flex flex-row justify-between items-center px-4 mb-3">
+    <SearchIcon size={4} />
+    <div class="flex fex-row items-center gap-2">
+      <span class="mb-0.5 text-normal font-normal">Recientes</span>
+      <RecentsIcon />
+    </div>
+  </div>
+  <PlaylistList />
+</div>

@@ -1,0 +1,83 @@
+---
+import type { Playlist } from "../../data/playlists";
+import PlayIcon from "../../icons/Play.astro";
+
+interface Props {
+  playlists: Playlist[];
+}
+
+const { playlists } = Astro.props;
+---
+
+<div>
+  <div class="flex flex-row justify-between items-center">
+    <h1
+      class="text-2xl font-bold tracking-normal cursor-pointer hover:underline"
+    >
+      Hecho para Nekolas
+    </h1>
+    <span
+      class="text-slate-300 text-sm tracking-wide font-bold cursor-pointer hover:underline"
+    >
+      Mostrar todos
+    </span>
+  </div>
+  <div class="mt-5 recommended-container -mx-3">
+    {
+      playlists.map((playlist) => {
+        return (
+          <article
+            class="recommended-card p-3 bg-transparent cursor-pointer rounded-lg
+        hover:bg-[#121212] transition-all duration-200 ease"
+          >
+            <div class="flex relative">
+              <img src={playlist.bannerImg} class="w-full" />
+              <div
+                class="shadow-below rounded-full bg-green-500 p-3.5 cursor-pointer 
+          flex items-center justify-center absolute bottom-0 right-0 mr-2 mb-2
+          hover:scale-105 transition-all duration-200 ease-out"
+              >
+                <PlayIcon />
+              </div>
+            </div>
+            <div class="flex flex-col gap-1 pt-2">
+              <h3 class="text-base font-medium">{playlist.name}</h3>
+              <span class="text-slate-300 text-wrap">
+                {playlist.author}
+              </span>
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
+</div>
+
+<style>
+  .recommended-container {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-auto-rows: 0;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    overflow: hidden;
+  }
+
+  .shadow-below {
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 0.2s ease-out,
+      transform 0.25s ease-out;
+  }
+
+  .shadow-below:hover {
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.35);
+    background-color: rgb(8, 218, 8);
+  }
+
+  .recommended-card:hover .shadow-below {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
