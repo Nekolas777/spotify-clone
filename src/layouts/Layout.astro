@@ -86,16 +86,24 @@ const { title } = Astro.props;
 
       function setContainerColor(dataColor) {
         const mainBackground = document.getElementById("main-background");
+        //const headerContainer = document.querySelector(".header-scrolled");
         const currentColor = mainBackground.getAttribute("data-color");
 
         if (dataColor && dataColor != currentColor) {
           mainBackground.style.setProperty("--context-color", dataColor);
           mainBackground.setAttribute("data-color", dataColor);
           mainBackground.style.backgroundColor = dataColor;
+
+          // Cambiar el background-color de la clase .header-scrolled usando una variable CSS
+          document.documentElement.style.setProperty(
+            "--header-background-color",
+            dataColor
+          );
         }
       }
 
       document.addEventListener("astro:page-load", () => {
+        document.documentElement.style.setProperty("--header-background-color", "#121212");
         const songCards = document.querySelectorAll(".songs-cards > div");
 
         songCards.forEach((card) => {
@@ -124,7 +132,7 @@ const { title } = Astro.props;
           scrollElement.addEventListener("scroll", () => {
             const header = document.querySelector(".header-container");
             //console.log(scrollElement.scrollTop);
-            if (scrollElement.scrollTop > 0) {
+            if (scrollElement.scrollTop > 150) {
               header?.classList.add("header-scrolled");
             } else {
               header?.classList.remove("header-scrolled");

@@ -9,6 +9,7 @@ import DownloadIcon from "../icons/Download.astro";
 <header
   class="header-container px-5 overflow-y-auto min-h-20 flex items-center
   max-h-[0px] bg-transparent sticky top-0 z-50 w-full rounded-t-lg"
+  data-color="transparent"
 >
   <div class="flex flex-row justify-between items-center w-full">
     <div class="flex flex-row gap-3.5">
@@ -47,6 +48,21 @@ import DownloadIcon from "../icons/Download.astro";
     </div>
   </div>
 </header>
+
+<style>
+  .header-container {
+    /* transition: background-color 0.3s ease; */
+  }
+
+  .header-scrolled {
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.6), 
+        rgba(0, 0, 0, 0.6)
+    ), var(--header-background-color, initial);
+    transition: background 0s ease-out;
+}
+
+</style>
 
 <script is:inline>
   document.addEventListener("astro:page-load", () => {

@@ -12,8 +12,6 @@ const calculateDateDifference = (date1: Date, date2: Date) => {
   return diffDays;
 };
 
-// obtenemos la fecha actual
-const currentDate = new Date();
 ---
 
 <div class="px-6">
@@ -67,7 +65,7 @@ const currentDate = new Date();
                 href="#"
                 class="text-gray-300 group-hover:text-white hover:underline text-sm"
               >
-                hace {calculateDateDifference(new Date(song.date), currentDate)} dia(s)
+                hace {calculateDateDifference(new Date(song.date), new Date())} dia(s)
               </a>
             </td>
             <td class="whitespace-nowrap text-gray-300 px-4 py-2.5 text-center">

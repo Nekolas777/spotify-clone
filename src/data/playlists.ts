@@ -1,4 +1,4 @@
-import type { colors } from "./colors";
+import { colors } from "./colors";
 
 export interface Playlist {
   id: number;
@@ -15,6 +15,7 @@ export const playlists: Playlist[] = [
   {
     id: 1,
     name: "Monstercat Classics",
+    color: colors.lightGray,
     type: "Lista",
     author: "Monstercat",
     description: "Compilation of the best Monstercat songs that bring you back to the good old days",
@@ -24,6 +25,7 @@ export const playlists: Playlist[] = [
   {
     id: 2,
     name: "En el Lienzo",
+    color: colors.lightGray,
     type: "Lista",
     author: "Mon Laferte",
     description: "This Is Mon Laferte. Los temas esenciales, todos en una lista.",
@@ -33,6 +35,7 @@ export const playlists: Playlist[] = [
   {
     id: 3,
     name: "Pretty Boy",
+    color: colors.lightGray,
     type: "Lista",
     author: "Maluma",
     description: "Maluma exitos - Grandes éxitos Maluma - Maluma viejitas",
@@ -42,6 +45,7 @@ export const playlists: Playlist[] = [
   {
     id: 4,
     name: "Viceversa",
+    color: colors.purple,
     type: "Lista",
     author: "Rauw Alejandro",
     description: "Rauw Alejandro Éxitos 🔥 Rauw Alejandro Mix",
@@ -51,6 +55,7 @@ export const playlists: Playlist[] = [
   {
     id: 5,
     name: "Neovaii Time",
+    color: colors.blue,
     type: "Lista",
     author: "Neovaii",
     description: "All of Neovaii; in just 1 playlist!",
@@ -60,6 +65,7 @@ export const playlists: Playlist[] = [
   {
     id: 6,
     name: "Beats to relax/study",
+    color: colors.brown,
     type: "Lista",
     author: "Lofi Girl",
     description: "Calm mellow lofi beats to chill and study to, curated by steezy prime.",
@@ -69,6 +75,7 @@ export const playlists: Playlist[] = [
   {
     id: 7,
     name: "Balas Perdidas",
+    color: colors.lightGray,
     type: "Lista",
     author: "Morat",
     description: "This Is Morat. Los temas esenciales, todos en una lista",
@@ -80,6 +87,7 @@ export const playlists: Playlist[] = [
     name: "Degeneracion Actual",
     type: "Lista",
     author: "Pedro Suárez Vertiz",
+    color: colors.red,
     description: "This Is Pedro Suárez-Vértiz. Los temas esenciales, todos en una lista.",
     profileImg: "https://i.scdn.co/image/ab6761610000f178d8aacea169dbf485886c2bee",
     bannerImg: "https://i.scdn.co/image/ab67616d00001e021bfc2ca68dfb8a1f71d04dae"
@@ -87,6 +95,7 @@ export const playlists: Playlist[] = [
   {
     id: 9,
     name: "1989 (Taylor's Version)",
+    color: colors.lightBlue,
     type: "Lista",
     author: "Taylor Swift",
     description: "💕 Taylor Swift Exitos 💕😍",
@@ -96,6 +105,7 @@ export const playlists: Playlist[] = [
   {
     id: 10,
     name: "NFSMW",
+    color: colors.lightGray,
     type: "List",
     author: "EA Games",
     description: "I added every song available on Spotify in order as acurate as the original tracks in the game",

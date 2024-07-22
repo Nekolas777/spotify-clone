@@ -9,5 +9,8 @@ export default defineConfig({
   integrations: [tailwind(), react()],
   assetsInclude: ['**/*.jpeg', '**/*.png', '**/*.jpg', '**/*.svg'],
   output: "server",
-  adapter: vercel()
+  adapter: vercel(),
+  devToolbar: {
+    enabled: false
+  }
 });

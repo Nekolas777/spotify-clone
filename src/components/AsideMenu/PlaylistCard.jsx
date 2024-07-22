@@ -26,6 +26,7 @@ export const PlaylistCard = ({ id, name, type, author, bannerImg }) => {
       ${selectedId == id ? "bg-gray-500/30" : "hover:bg-gray-500/20"}`}
       onClick={(e) => handleClick(e, id)}
       href={`/playlist/${id}`}
+      /* color={playlist.color?.dark || "#121212"} */
     >
       <div className="flex">
         <img
@@ -40,7 +41,7 @@ export const PlaylistCard = ({ id, name, type, author, bannerImg }) => {
       <div className="flex flex-col gap-0.5 mb-0.5">
         <p className="tracking-normal font-medium">{name}</p>
         <div className="flex flex-row items-center gap-2">
-          <span className="text-sm">
+          <span className="text-sm text-[#b3b3b3] font-medium">
             {type} • {author}
           </span>
         </div>

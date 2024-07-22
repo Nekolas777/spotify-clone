@@ -1,6 +1,6 @@
 ---
 import type { Artist } from "../../data/artists";
-import PlayIcon from "../../icons/Play.astro";
+import {Play} from "../../icons/Play.jsx";
 
 interface Props {
   artists: Artist[];
@@ -40,12 +40,12 @@ const { artists } = Astro.props;
           flex items-center justify-center absolute bottom-0 right-0 mr-2 mb-2
           hover:scale-105 transition-all duration-200 ease-out"
               >
-                <PlayIcon />
+                <Play />
               </div>
             </div>
             <div class="flex flex-col gap-1 pt-2">
               <h3 class="text-base font-medium">{artist.name}</h3>
-              <span class="text-slate-300 text-wrap">Artista</span>
+              <span class="text-[#b3b3b3] text-wrap">Artista</span>
             </div>
           </article>
         );
