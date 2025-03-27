@@ -1,6 +1,15 @@
-import {Play} from "../../icons/Play.jsx";
+import { Play } from "../../icons/Play.jsx";
+import { usePlayerStore } from "../../store/playerStore.js";
 
-export const RecentSongs = ({songs = []}) => {
+export const RecentSongs = ({ songs = [] }) => {
+  const { setCurrentMusic, currentMusic } = usePlayerStore();
+
+  const handleSongClick = (song) => {
+    setCurrentMusic({
+      ...currentMusic,
+      song: song
+    })
+  }
 
   return (
     <div className="songs-cards">
@@ -18,6 +27,7 @@ export const RecentSongs = ({songs = []}) => {
               <div
                 className="rounded-full bg-green-500 p-2 cursor-pointer flex items-center justify-center
           hover:scale-105 transition-all duration-200 ease-out shadow-below"
+                onClick={() => handleSongClick(song)}
               >
                 <Play />
               </div>
