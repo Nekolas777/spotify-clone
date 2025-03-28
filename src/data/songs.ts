@@ -9,6 +9,7 @@ export interface Song {
   album: string;
   date: Date;
   duration: string;
+  musicPath: string;
 }
 
 export const songs: Song[] = [
@@ -20,7 +21,8 @@ export const songs: Song[] = [
     bannerImage: "https://i.scdn.co/image/ab67616d0000b2734d02949f4eaa850b2c178e70",
     album: "On & On",
     date: new Date(),
-    duration: "3:27",
+    duration: "3:28",
+    musicPath: "/music/On&On.mp3",
   },
   {
     id: 2,
@@ -30,7 +32,8 @@ export const songs: Song[] = [
     artists: ["Cartoon", "Jéja", "Daniel Levi"],
     album: "Why We Lose",
     date: new Date(),
-    duration: "3:17",
+    duration: "3:33",
+    musicPath: "/music/WhyWeLose.mp3",
   },
   {
     id: 3,
@@ -40,7 +43,8 @@ export const songs: Song[] = [
     artists: ["Different Heaven"],
     album: "NCS: Infinity",
     date: new Date(),
-    duration: "2:48",
+    duration: "2:46",
+    musicPath: "/music/Nekozilla.mp3",
   },
   {
     id: 4,
@@ -51,6 +55,7 @@ export const songs: Song[] = [
     album: "Royalty",
     date: new Date(),
     duration: "3:43",
+    musicPath: "/music/Royalty.mp3",
   },
   {
     id: 5,
@@ -60,7 +65,8 @@ export const songs: Song[] = [
     artists: ["Fareoh"],
     album: "Under Water",
     date: new Date(),
-    duration: "4:20",
+    duration: "2:45",
+    musicPath: "/music/UnderWater.mp3",
   },
   {
     id: 6,
@@ -71,6 +77,7 @@ export const songs: Song[] = [
     album: "Outlaw",
     date: new Date(),
     duration: "4:20",
+    musicPath: "/music/Outlaw.mp3",
   },
   {
     id: 7,
@@ -80,7 +87,8 @@ export const songs: Song[] = [
     artists: ["Jim Yosef"],
     album: "Firefly",
     date: new Date(),
-    duration: "4:16",
+    duration: "3:45",
+    musicPath: "/music/Firefly.mp3",
   },
   {
     id: 8,
@@ -91,6 +99,7 @@ export const songs: Song[] = [
     album: "JVNA Music",
     date: new Date(),
     duration: "2:40",
+    musicPath: "/music/TakingItSlow.mp3",
   },
   {
     id: 9,
@@ -101,6 +110,7 @@ export const songs: Song[] = [
     album: "Overdose",
     date: new Date(),
     duration: "2:51",
+    musicPath: "/music/Overdose.mp3",
   },
   {
     id: 10,
@@ -111,6 +121,7 @@ export const songs: Song[] = [
     album: "Different Eyes",
     date: new Date(),
     duration: "1:54",
+    musicPath: "/music/DifferentEyes.mp3",
   },
   {
     id: 11,
@@ -121,6 +132,7 @@ export const songs: Song[] = [
     album: "Whitout You",
     date: new Date(),
     duration: "3:08",
+    musicPath: "/music/WhitoutYou.mp3",
   },
   {
     id: 12,
@@ -131,6 +143,7 @@ export const songs: Song[] = [
     album: "Vibe",
     date: new Date(),
     duration: "2:59",
+    musicPath: "/music/Vibe.mp3",
   },
   {
     id: 13,
@@ -141,6 +154,7 @@ export const songs: Song[] = [
     album: "Fearless",
     date: new Date(),
     duration: "3:14",
+    musicPath: "/music/FearlessPtII.mp3",
   },
   {
     id: 14,
@@ -151,6 +165,7 @@ export const songs: Song[] = [
     album: "Why Do I?",
     date: new Date(),
     duration: "3:43",
+    musicPath: "/music/WhyDoI.mp3",
   },
   {
     id: 15,
@@ -161,5 +176,6 @@ export const songs: Song[] = [
     album: "Mortals",
     date: new Date(),
     duration: "3:48",
+    musicPath: "/music/Mortals.mp3",
   }
 ];
