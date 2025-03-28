@@ -70,7 +70,7 @@ export const playlists: Playlist[] = [
     author: "Lofi Girl",
     description: "Calm mellow lofi beats to chill and study to, curated by steezy prime.",
     profileImg: "https://i.scdn.co/image/ab67757000003b822d75223c2d1d89c511dee2a5",
-    bannerImg: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84e2d12eb86ad96ab1f0e5e6b2"
+    bannerImg: "https://i.pinimg.com/564x/a4/97/e2/a497e286ee662ce1500500173d0d9808.jpg"
   },
   {
     id: 7,
