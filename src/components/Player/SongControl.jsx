@@ -1,18 +1,67 @@
-import * as Slider from '@radix-ui/react-slider';
+import * as Slider from "@radix-ui/react-slider";
+import { usePlayerStore } from "../../store/playerStore";
+import { useEffect, useState } from "react";
+import { formatTime } from "../../utils/helpers/formatTime";
 
-export const SongControl = () => {
+export const SongControl = ({ audioRef }) => {
+  const { currentMusic, progress, setProgress, setIsPlaying } = usePlayerStore();
+
+  useEffect(() => {
+    const handleTimeUpdate = () => {
+      if (audioRef.current) {
+        const currentTime = audioRef.current.currentTime;
+        const duration = audioRef.current.duration;
+        setProgress((currentTime / duration) * 100);
+      }
+    };
+
+    const handleAudioEnded = () => {
+      setProgress(0);
+      setIsPlaying(false);
+      audioRef.current.currentTime = 0;
+    }
+
+    if (audioRef.current) {
+      /* console.log("AudioRef: ", audioRef.current); */
+      audioRef.current?.addEventListener("timeupdate", handleTimeUpdate);
+      audioRef.current?.addEventListener("ended", handleAudioEnded);
+    }
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current?.removeEventListener("timeupdate", handleTimeUpdate);
+        audioRef.current?.removeEventListener("ended", handleAudioEnded);
+      }
+    };
+  }, [progress]);
+
+  const handleValueChange = (value) => {
+    if (audioRef.current) {
+      const duration = audioRef.current.duration || 1;
+      audioRef.current.currentTime = (value[0] / 100) * duration;
+    }
+  };
+
   return (
-    <div className="flex flex-row gap-3 items-center bg-black text-white">
-      <h1 className="text-sm text-[#b3b3b3]">0:00</h1>
-
-      <Slider.Root className="w-[550px] relative flex items-center" defaultValue={[0]} max={100} min={0} step={1}>
-        <Slider.Track className="bg-gray-600 relative flex-grow h-1 rounded-full">
-          <Slider.Range className="absolute bg-green-500 h-full rounded-full" />
+    <div className='flex flex-row gap-3 items-center bg-black text-white'>
+      <h1 className='text-sm text-[#b3b3b3]'>
+        {formatTime(audioRef.current?.currentTime) || "0:00"}
+      </h1>
+      <Slider.Root
+        className='w-[550px] relative flex items-center cursor-pointer'
+        value={[progress]}
+        max={100}
+        min={0}
+        step={1}
+        onValueChange={handleValueChange}
+      >
+        <Slider.Track className='bg-gray-600 relative flex-grow h-1 rounded-full'>
+          <Slider.Range className='absolute bg-green-500 h-full rounded-full' />
         </Slider.Track>
-        <Slider.Thumb className="block w-3 h-3 bg-white rounded-full shadow-md" />
+        <Slider.Thumb className='block w-3 h-3 bg-white rounded-full shadow-md' />
       </Slider.Root>
 
-      <h1 className="text-sm text-[#b3b3b3]">3:45</h1>
+      <h1 className='text-sm text-[#b3b3b3]'>{currentMusic.song.duration}</h1>
     </div>
   );
 };
