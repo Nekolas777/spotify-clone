@@ -3,8 +3,8 @@ import { usePlayerStore } from "../../store/playerStore";
 import { useEffect, useState } from "react";
 import { formatTime } from "../../utils/helpers/formatTime";
 
-export const SongControl = ({ audioRef }) => {
-  const { currentMusic, progress, setProgress, setIsPlaying } = usePlayerStore();
+export const SongControl = () => {
+  const { currentMusic, progress, setProgress, setIsPlaying, audioRef } = usePlayerStore();
 
   useEffect(() => {
     const handleTimeUpdate = () => {
