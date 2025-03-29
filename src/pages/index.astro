@@ -18,30 +18,3 @@ import { RecentSongs } from "../components/Home/RecentSongs";
   </section>
 </Layout>
 
-<style is:global>
-  .shadow-below {
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    transform: translateY(10px);
-    transition:
-      opacity 0.2s ease-out,
-      transform 0.25s ease-out;
-  }
-
-  .shadow-below:hover {
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.35);
-    background-color: rgb(8, 218, 8);
-  }
-
-  .songs-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 16px;
-  }
-
-  .songs-cards > div:hover .shadow-below {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
-
