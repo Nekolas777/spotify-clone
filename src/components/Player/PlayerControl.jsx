@@ -10,10 +10,10 @@ import { useEffect, useRef } from "react";
 
 export const PlayerControl = () => {
 
-  const { currentMusic, isPlaying, setIsPlaying } = usePlayerStore();
-  const audioRef = useRef(null);
+  const { currentMusic, isPlaying, setIsPlaying, audioRef, setAudioRef } = usePlayerStore();
 
   useEffect(() => {
+    /* console.log("Current Music: ", currentMusic); */
     if (audioRef.current) {
       // actualziamos la fuente del audio cuando cambie la canción
       audioRef.current.src = currentMusic.song.musicPath;
@@ -34,6 +34,21 @@ export const PlayerControl = () => {
 
     setIsPlaying(!isPlaying);
   }
+  
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === "Space") {
+        event.preventDefault();
+        handlePlayButton();
+      }
+    };
+
+    window.addEventListener("keyup", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keyup", handleKeyDown);
+    };
+  }, [isPlaying]);
 
   return (
     <div className="flex flex-col items-center gap-1.5">
@@ -51,7 +66,7 @@ export const PlayerControl = () => {
         <Repeat/>
       </div>
       <div>
-        <SongControl audioRef={audioRef}/>
+        <SongControl/>
       </div>
     </div>
   );
