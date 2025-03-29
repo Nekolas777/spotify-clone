@@ -1,8 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import { playlists, type Playlist } from "../../data/playlists.ts";
-import { PinIcon } from "../../icons/PinIcon.jsx";
-import { PlaylistCard } from "./PlaylistCard.jsx";
+import PinIcon from "src/icons/PinIcon.astro";
+import PlaylistCard from "./PlaylistCard.astro";
 ---
 
 <div class="">
@@ -30,8 +30,8 @@ import { PlaylistCard } from "./PlaylistCard.jsx";
   </article>
   {
     playlists.map((playlist: Playlist) => (
-      <PlaylistCard client:load
-        id={playlist.id}
+      <PlaylistCard
+        playlistId={playlist.id}
         name={playlist.name}
         type={playlist.type}
         author={playlist.author}
