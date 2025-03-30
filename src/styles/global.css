@@ -1,0 +1,259 @@
+@import "tailwindcss";
+
+.border {
+  border: 1px solid red;
+}
+
+html {
+  font-family: system-ui, sans-serif;
+  background-color: #010101;
+  color: white;
+}
+
+.transition-main {
+  transition-property: opacity, transform;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+html.is-animating .transition-main {
+  opacity: 0;
+  /* transform: translateY(1em); */
+}
+
+html.is-leaving .transition-main {
+  transform: translateY(-1em);
+}
+
+html.is-animating.to-left .transition-main {
+  opacity: 0;
+  transform: translateY(1em);
+}
+
+html.is-leaving.to-left .transition-main {
+  transform: translateY(-1em);
+}
+
+code {
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+.playlists-container,
+.main-container {
+  -webkit-transition: all 1s linear;
+  position: relative;
+}
+
+main {
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  scrollbar-gutter: stable;
+}
+
+:hover::-webkit-scrollbar {
+  opacity: 1;
+}
+
+.playlists-container::-webkit-scrollbar-track {
+  background: transparent;
+  margin: -10px 0;
+}
+
+.main-container::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 0px 0 !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background: rgba(122, 120, 120, 0);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+:hover::-webkit-scrollbar-thumb {
+  background: rgba(122, 120, 120, 0.5);
+  opacity: 1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* global styles for the app */
+
+#playlist-background {
+  background-image: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(rgba(0, 0, 0, 0.6)),
+      to(#121212)
+    ),
+    url("/img/background-noise.svg");
+  transition: background-color 1s ease;
+}
+
+#banner-playlist-background {
+  background-image: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(transparent),
+      to(rgba(0, 0, 0, 0.5))
+    ),
+    url("/img/background-noise.svg");
+}
+
+.custom-bg {
+  background-color: var(--custom-bg-color);
+}
+
+.shadow-below {
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.25s ease-out;
+}
+
+.shadow-below:hover {
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.35);
+  background-color: rgb(8, 218, 8);
+}
+
+.songs-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 16px;
+}
+
+.songs-cards > div:hover .shadow-below {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#main-background {
+  background-image: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(rgba(0, 0, 0, 0.6)),
+      to(#121212)
+    ),
+    url("/img/background-noise.svg");
+  transition: background-color 1s ease;
+}
+
+.recently-heard-container {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-auto-rows: 0;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  overflow: hidden;
+}
+
+.recently-heard-container span {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shadow-below {
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.25s ease-out;
+}
+
+.shadow-below:hover {
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.35);
+  background-color: rgb(8, 218, 8);
+}
+
+.recommended-card:hover .shadow-below {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.recommended-container {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-auto-rows: 0;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  overflow: hidden;
+}
+
+.shadow-below {
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.25s ease-out;
+}
+
+.shadow-below:hover {
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.35);
+  background-color: rgb(8, 218, 8);
+}
+
+.recommended-card:hover .shadow-below {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.popular-artists-container {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-auto-rows: 0;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  overflow: hidden;
+}
+
+.shadow-below {
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.25s ease-out;
+}
+
+.shadow-below:hover {
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.35);
+  background-color: rgb(8, 218, 8);
+}
+
+.recommended-card:hover .shadow-below {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header-container {
+  transition: opacity 0.3s linear;
+}
+
+
+.header-scrolled {
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.6), 
+      rgba(0, 0, 0, 0.6)
+  ), var(--header-background-color, initial);
+  transition: opacity 0.3s ease;
+}

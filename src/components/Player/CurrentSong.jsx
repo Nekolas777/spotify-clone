@@ -1,16 +1,9 @@
-import { useEffect } from "react";
 import { Heart } from "../../icons/Heart";
 import { usePlayerStore } from "../../store/playerStore";
-
-console.log('ola');
 
 export const CurrentSong = () => {
 
   const { currentMusic } = usePlayerStore();
-
-  useEffect(() => {
-    console.log('ola');
-  }, []);
 
   return (
     <div className="flex flex-row gap-4 items-center">

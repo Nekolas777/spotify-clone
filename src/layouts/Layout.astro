@@ -1,11 +1,10 @@
 ---
-import { ViewTransitions } from "astro:transitions";
 import { Player } from "../components/Player/Player.jsx";
 import AsideMenu from "../components/AsideMenu/AsideMenu.astro";
 import Header from "../components/Header.astro";
-import "simplebar/dist/simplebar.css";
 import MainBackground from "../components/MainBackground.astro";
-import "./Layout.css";
+import "simplebar/dist/simplebar.css";
+import "../styles/global.css";
 
 interface Props {
   title: string;
@@ -15,131 +14,214 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
+    <meta charset='UTF-8' />
+    <meta name='description' content='Astro description' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
     <title>{title}</title>
-    <ViewTransitions fallback="none" />
   </head>
   <body>
-    <div id="app" class="relative h-screen p-2 gap-2">
-      <aside class="[grid-area:aside] flex-col flex-grow-1">
+    <div id='app' class='relative h-screen p-2 gap-2'>
+      <aside class='[grid-area:aside] flex-col flex-grow-1'>
         <AsideMenu />
       </aside>
 
       <main
-        data-simplebar
-        class="[grid-area:main] rounded-lg flex-1 bg-[#121212] w-full h-full relative"
+        class='[grid-area:main] rounded-lg flex-1 bg-[#121212] w-full h-full relative'
+        onkeydown='onKeyDown(event)'
       >
-        <MainBackground />
         <Header />
-        <slot />
+        <div id='swup' class='transition-main h-full' data-simplebar>
+          <MainBackground />
+          <slot />
+        </div>
       </main>
 
-      <footer class="[grid-area:player] px-2 py-1.5 z-[100] bg-black">
+      <footer class='[grid-area:player] px-2 py-1.5 z-[100] bg-black'>
         <Player client:load />
       </footer>
     </div>
 
-    <style>
+    <style is:global>
       #app {
         display: grid;
         grid-template-areas:
           "aside main main"
           "player player player";
         grid-template-columns: 350px 1fr;
-        grid-template-rows: 1fr auto;
+        grid-template-rows: 1fr 72px;
       }
     </style>
-
-    <script is:inline defer>
-      function onMouseOverColorad(el) {
-        if (el) {
-          const dataColor = el.getAttribute("data-color");
-          if (!dataColor) return;
-          window.coloradTimeout = setTimeout(
-            () => setContainerColor(dataColor),
-            200
-          );
-        }
-      }
-
-      function onMouseFocusColorad(el) {
-        if (el) {
-          const dataColor = el.getAttribute("data-color");
-          if (!dataColor) return;
-          setContainerColor(dataColor);
-        }
-      }
-
-      window.coloradTimeout = null;
-      function onMouseOutColorad() {
-        if (window.coloradTimeout) {
-          clearTimeout(window.coloradTimeout);
-          window.coloradTimeout = null;
-        }
-      }
-
-      function setContainerColor(dataColor) {
-        const mainBackground = document.getElementById("main-background");
-        //const headerContainer = document.querySelector(".header-scrolled");
-        const currentColor = mainBackground.getAttribute("data-color");
-
-        if (dataColor && dataColor != currentColor) {
-          mainBackground.style.setProperty("--context-color", dataColor);
-          mainBackground.setAttribute("data-color", dataColor);
-          mainBackground.style.backgroundColor = dataColor;
-
-          // Cambiar el background-color de la clase .header-scrolled usando una variable CSS
-          document.documentElement.style.setProperty(
-            "--header-background-color",
-            dataColor
-          );
-        }
-      }
-
-      document.addEventListener("astro:page-load", () => {
-        document.documentElement.style.setProperty("--header-background-color", "#121212");
-        const songCards = document.querySelectorAll(".songs-cards > div");
-
-        songCards.forEach((card) => {
-          card.addEventListener("mouseover", () => {
-            onMouseOverColorad(card);
-          });
-          card.addEventListener("mouseout", onMouseOutColorad);
-          card.addEventListener("focus", () => onMouseFocusColorad(card));
-          card.addEventListener("blur", onMouseOutColorad);
-        });
-      });
-    </script>
-
-    <script>
-      import SimpleBar from "simplebar";
-
-      document.addEventListener("astro:page-load", () => {
-        const mainContent = document.querySelector("main");
-        const scrollElement = mainContent?.querySelector(
-          ".simplebar-content-wrapper"
-        );
-
-        new SimpleBar(mainContent as HTMLElement);
-
-        if (scrollElement) {
-          scrollElement.addEventListener("scroll", () => {
-            const header = document.querySelector(".header-container");
-            //console.log(scrollElement.scrollTop);
-            if (scrollElement.scrollTop > 225) {
-              header?.classList.add("header-scrolled");
-            } else {
-              header?.classList.remove("header-scrolled");
-            }
-          });
-        }
-      });
-    </script>
   </body>
+
+  <script is:inline>
+    // con esta funcion al presionar la tecla espacio se evita el scroll de la pagina
+    // y se puede usar para pausar la cancion en el reproductor
+    function onKeyDown(event) {
+      (event.key === " " || event.code === "Space") && event.preventDefault();
+    }
+  </script>
+
+  <script>
+    import SimpleBar from "simplebar";
+    import Swup from "swup";
+
+    const swup = new Swup({
+      containers: ["#swup"],
+      animateHistoryBrowsing: true,
+    });
+
+    swup.hooks.on("content:replace", () => {
+      const header = document.querySelector(".header-container");
+      header?.classList.remove("header-scrolled");
+      paintColorHeaderBySongCards();
+      updgradeBackgroundColor();
+      handleSimplebar();
+      restartColorBackground();
+      activePlaylistCard();
+    });
+
+    swup.hooks.on("link:click", () => {
+      const header = document.querySelector(".header-container");
+      header?.classList.remove("header-scrolled");
+    });
+
+    swup.hooks.on("enable", () => {
+      updgradeBackgroundColor();
+      paintColorHeaderBySongCards();
+      handleSimplebar();
+      restartColorBackground();
+      activePlaylistCard();
+    });
+
+    function paintColorHeaderBySongCards() {
+      document.documentElement.style.setProperty(
+        "--header-background-color",
+        "#121212"
+      );
+      const songCards = document.querySelectorAll(".songs-cards > div");
+
+      songCards.forEach((card: any) => {
+        card.addEventListener("mouseover", () => {
+          onMouseOverColorad(card);
+        });
+        card.addEventListener("mouseout", onMouseOutColorad);
+        card.addEventListener("focus", () => onMouseFocusColorad(card));
+        card.addEventListener("blur", onMouseOutColorad);
+      });
+    }
+
+    function activePlaylistCard() {
+      const navLinks = document.querySelectorAll(".playlist-card");
+      const currentId = window.location.pathname.split("/").pop(); // Obtiene el ID actual desde la URL
+
+      navLinks.forEach((link) => {
+        const id = link.getAttribute("data-id");
+
+        // eliminamos las clases existentes
+        link.classList.remove("bg-gray-500/30", "hover:bg-gray-500/20");
+
+        if (id === currentId) {
+          link.classList.add("bg-gray-500/30");
+        } else {
+          link.classList.add("hover:bg-gray-500/20");
+        }
+      });
+    }
+
+    function updgradeBackgroundColor() {
+      // Obtener el valor de --custom-bg-color de la clase custom-bg
+      const customBgElement = document.querySelector(".custom-bg");
+
+      if (!customBgElement) return;
+
+      const customBgColor =
+        getComputedStyle(customBgElement).getPropertyValue("--custom-bg-color");
+
+      // Establecer el valor obtenido en --header-background-color
+      document.documentElement.style.setProperty(
+        "--header-background-color",
+        customBgColor
+      );
+    }
+
+    function handleSimplebar() {
+      const mainContent = document.querySelector("#swup");
+      const scrollElement = mainContent?.querySelector(
+        ".simplebar-content-wrapper"
+      );
+
+      if (scrollElement) {
+        scrollElement.addEventListener("scroll", () => {
+          const header = document.querySelector(".header-container");
+          //console.log(scrollElement.scrollTop);
+          if (scrollElement.scrollTop > 265) {
+            header?.classList.add("header-scrolled");
+          } else {
+            header?.classList.remove("header-scrolled");
+          }
+        });
+      }
+    }
+
+    function restartColorBackground() {
+      const mainBackground = document.getElementById("main-background");
+      const defaultColor = "#535353";
+
+      if (mainBackground) {
+        mainBackground.style.setProperty("--context-color", defaultColor);
+        mainBackground.setAttribute("data-color", defaultColor);
+        mainBackground.style.backgroundColor = defaultColor;
+      }
+    }
+
+    function onMouseOverColorad(el: HTMLElement) {
+      if (el) {
+        const dataColor = el.getAttribute("data-color");
+        if (!dataColor) return;
+        window.coloradTimeout = setTimeout(
+          () => setContainerColor(dataColor),
+          200
+        );
+      }
+    }
+
+    function onMouseFocusColorad(el: HTMLElement) {
+      if (el) {
+        const dataColor = el.getAttribute("data-color");
+        if (!dataColor) return;
+        setContainerColor(dataColor);
+      }
+    }
+
+    function onMouseOutColorad() {
+      if (window.coloradTimeout) {
+        clearTimeout(window.coloradTimeout);
+        window.coloradTimeout = null;
+      }
+    }
+
+    function setContainerColor(dataColor: any) {
+      const mainBackground = document.getElementById("main-background");
+      //const headerContainer = document.querySelector(".header-scrolled");
+      const currentColor = mainBackground?.getAttribute("data-color");
+
+      if (dataColor && dataColor != currentColor) {
+        mainBackground?.style.setProperty("--context-color", dataColor);
+        mainBackground?.setAttribute("data-color", dataColor);
+        if (mainBackground?.style) {
+          mainBackground.style.backgroundColor = dataColor;
+        }
+
+        // Cambiar el background-color de la clase .header-scrolled usando una variable CSS
+        document.documentElement.style.setProperty(
+          "--header-background-color",
+          dataColor
+        );
+      }
+    }
+  </script>
 </html>

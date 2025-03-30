@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import {Play} from "../../icons/Play.jsx";
+import { Play } from "../../icons/Play.jsx";
 import MoreOptiosnIcon from "../../icons/MoreOptionsIcon.astro";
 import { Shuffle } from "../../icons/Shuffle";
 import Download from "../../icons/Download.astro";
@@ -17,103 +17,60 @@ const playlist = playlists.find((playlist) => playlist.id.toString() === id);
 const backgroundColor = playlist?.color?.dark || "#121212";
 ---
 
-<Layout title="Spotify Clone">
-  <section class="py-3 relative">
-    <div class="flex flex-row gap-5 px-5 pb-8 relative">
+<Layout title='Spotify Clone'>
+  <section class='mt-20 py-3 relative'>
+    <div class='flex flex-row gap-5 px-5 pb-8 relative'>
       <div
-        id="banner-playlist-background"
-        class="custom-bg absolute -z-[10] w-full h-[350px] left-0 top-0 -mt-[92px]"
+        id='banner-playlist-background'
+        class='custom-bg absolute -z-[10] w-full h-[350px] left-0 top-0 -mt-[92px]'
         style={`--custom-bg-color: ${backgroundColor};`}
-        data-banner-color="#134e4a"
+        data-banner-color='#134e4a'
       >
       </div>
-      <div class="flex">
+      <div class='flex'>
         <img
           src={playlist?.bannerImg}
-          class="w-56 h-56"
-          style="box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);"
+          class='w-56 h-56'
+          style='box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);'
         />
       </div>
-      <div class="flex flex-col text-white justify-end gap-3">
-        <span class="">{playlist?.type} pública</span>
-        <h1 class="text-6xl font-bold ml-[-3px]">{playlist?.name}</h1>
+      <div class='flex flex-col text-white justify-end gap-3'>
+        <span class=''>{playlist?.type} pública</span>
+        <h1 class='text-6xl font-bold ml-[-3px]'>{playlist?.name}</h1>
         <span>{playlist?.description}</span>
-        <div class="flex flex-row gap-2 items-center mt-1.5">
-          <img src={playlist?.profileImg} class="max-w-6 rounded-full" />
-          <p class="mt-[-3px]">
-            <span class="font-bold">{playlist?.author}</span> • 7 canciones, 28 min,
+        <div class='flex flex-row gap-2 items-center mt-1.5'>
+          <img src={playlist?.profileImg} class='max-w-6 rounded-full' />
+          <p class='mt-[-3px]'>
+            <span class='font-bold'>{playlist?.author}</span> • 7 canciones, 28 min,
             45 s
           </p>
         </div>
       </div>
     </div>
-    <div class="flex flex-row px-5 py-7 items-center justify-between relative">
+    <div class='flex flex-row px-5 py-7 items-center justify-between relative'>
       <div
-        id="playlist-background"
-        class="custom-bg absolute -z-[10] w-full h-[232px] left-0 top-0"
+        id='playlist-background'
+        class='custom-bg absolute -z-[10] w-full h-[232px] left-0 top-0'
         style={`--custom-bg-color: ${backgroundColor};`}
       >
       </div>
-      <div class="flex flex-row gap-[22px] items-center">
+      <div class='flex flex-row gap-[22px] items-center'>
         <div
-          class="shadow-below rounded-full bg-green-500 p-[18px] cursor-pointer flex items-center
-        justify-center hover:scale-105 transition-all duration-200 ease-out"
+          class='shadow-below rounded-full bg-green-500 p-[18px] cursor-pointer flex items-center
+        justify-center hover:scale-105 transition-all duration-200 ease-out'
         >
           <Play />
         </div>
         <SaveIcon />
         <Shuffle size={7} />
-        <Download size="7" />
+        <Download size='7' />
         <MoreOptiosnIcon />
       </div>
-      <div class="flex flex-row gap-3 items-center">
-        <span class="font-medium mt-[-1.5px]">Lista</span>
+      <div class='flex flex-row gap-3 items-center'>
+        <span class='font-medium mt-[-1.5px]'>Lista</span>
         <ListIcon />
       </div>
     </div>
     <MusicsTable />
   </section>
 </Layout>
-
-<script>
-  document.addEventListener("astro:page-load", () => {
-    // Obtener el valor de --custom-bg-color de la clase custom-bg
-    const customBgElement = document.querySelector(".custom-bg");
-
-    if (!customBgElement) return;
-
-    const customBgColor = getComputedStyle(customBgElement).getPropertyValue("--custom-bg-color");
-
-    // Establecer el valor obtenido en --header-background-color
-    document.documentElement.style.setProperty("--header-background-color", customBgColor);
-  });
-</script>
-
-<style>
-  #playlist-background {
-    background-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        from(rgba(0, 0, 0, 0.6)),
-        to(#121212)
-      ),
-      url("/img/background-noise.svg");
-    transition: background-color 1s ease;
-  }
-
-  #banner-playlist-background {
-    background-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        from(transparent),
-        to(rgba(0, 0, 0, 0.5))
-      ),
-      url("/img/background-noise.svg");
-  }
-
-  .custom-bg {
-    background-color: var(--custom-bg-color);
-  }
-</style>

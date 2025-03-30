@@ -1,21 +1,16 @@
 export const VolumeDown = () => {
   return (
     <svg
-      className="w-6 h-6 text-gray-800 dark:text-white"
-      aria-hidden="true"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      fill="none"
-      viewBox="0 0 24 24"
+      data-encore-id='icon'
+      role='presentation'
+      aria-label='Volumen medio'
+      aria-hidden='false'
+      className='e-9640-icon w-4 h-4 cursor-pointer'
+      id='volume-icon'
+      fill='#B4B4B8'
+      viewBox='0 0 16 16'
     >
-      <path
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M17.5 8.43A4.985 4.985 0 0 1 19 12a4.984 4.984 0 0 1-1.43 3.5M14 6.135v11.73a1 1 0 0 1-1.64.768L8 15H6a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h2l4.36-3.633a1 1 0 0 1 1.64.768Z"
-      />
+      <path d='M9.741.85a.75.75 0 0 1 .375.65v13a.75.75 0 0 1-1.125.65l-6.925-4a3.642 3.642 0 0 1-1.33-4.967 3.639 3.639 0 0 1 1.33-1.332l6.925-4a.75.75 0 0 1 .75 0zm-6.924 5.3a2.139 2.139 0 0 0 0 3.7l5.8 3.35V2.8l-5.8 3.35zm8.683 6.087a4.502 4.502 0 0 0 0-8.474v1.65a2.999 2.999 0 0 1 0 5.175v1.649z'></path>
     </svg>
   );
 };
