@@ -5,26 +5,28 @@ import PinIcon from "src/icons/PinIcon.astro";
 import PlaylistCard from "./PlaylistCard.astro";
 ---
 
-<div class="">
+<div class=''>
   {/* This card is for most songs liked list owo */}
   <article
-    class="flex flex-row gap-3 items-center rounded-[4px] p-2
-      hover:bg-slate-800 transition-all duration-150"
+    class='flex flex-row gap-3 items-center rounded-[4px] p-2
+      hover:bg-slate-800 transition-all duration-150'
   >
-    <div class="flex">
+    <div class='flex'>
       <Image
-        src="https://misc.scdn.co/liked-songs/liked-songs-64.png"
+        src='https://misc.scdn.co/liked-songs/liked-songs-64.png'
         width={48}
         height={48}
-        class="w-12 h-12 rounded-[4px]"
-        alt="liked_songs"
+        class='w-12 h-12 rounded-[4px]'
+        alt='liked_songs'
       />
     </div>
-    <div class="flex flex-col gap-0.5 mb-0.5">
-      <p class="tracking-normal font-medium">Tus me gusta</p>
-      <div class="flex flex-row items-center gap-2">
+    <div class='flex flex-col gap-0.5 mb-0.5'>
+      <p class='tracking-normal font-medium'>Tus me gusta</p>
+      <div class='flex flex-row items-center gap-2'>
         <PinIcon />
-        <span class="text-sm text-[#b3b3b3] font-medium">Lista • 128 canción</span>
+        <span class='text-sm text-[#b3b3b3] font-medium'
+          >Lista • 128 canción</span
+        >
       </div>
     </div>
   </article>
