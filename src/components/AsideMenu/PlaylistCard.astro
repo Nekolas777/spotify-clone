@@ -2,14 +2,12 @@
 import { Image } from "astro:assets";
 
 const { playlistId, name, type, author, bannerImg } = Astro.props;
-
-const { id } = Astro.params;
 ---
 
 <a
-  class={`flex flex-row gap-3 items-center rounded-[4px] 
-        p-2 transition-all duration-150 cursor-pointer 
-      ${id == playlistId ? "bg-gray-500/30" : "hover:bg-gray-500/20"}`}
+  class={`playlist-card flex flex-row gap-3 items-center rounded-[4px] 
+        p-2 transition-all duration-150 cursor-pointer`}
+  data-id={playlistId}
   href={`/playlist/${playlistId}`}
 >
   <div class='flex'>
