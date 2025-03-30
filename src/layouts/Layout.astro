@@ -30,13 +30,12 @@ const { title } = Astro.props;
       </aside>
 
       <main
-        data-simplebar
         class='[grid-area:main] rounded-lg flex-1 bg-[#121212] w-full h-full relative'
         onkeydown='onKeyDown(event)'
       >
-        <MainBackground />
         <Header />
-        <div id='swup' class='transition-fade'>
+        <div id='swup' class='transition-main h-full' data-simplebar>
+          <MainBackground />
           <slot />
         </div>
       </main>
@@ -53,7 +52,7 @@ const { title } = Astro.props;
           "aside main main"
           "player player player";
         grid-template-columns: 350px 1fr;
-        grid-template-rows: 1fr auto;
+        grid-template-rows: 1fr 72px;
       }
     </style>
   </body>
@@ -73,44 +72,30 @@ const { title } = Astro.props;
     const swup = new Swup({
       containers: ["#swup"],
       animateHistoryBrowsing: true,
-      animationScope: "html",
-      animationSelector: '[class*="transition-"]',
     });
 
     swup.hooks.on("content:replace", () => {
-      handleNavigation();
+      const header = document.querySelector(".header-container");
+      header?.classList.remove("header-scrolled");
       paintColorHeaderBySongCards();
       updgradeBackgroundColor();
       handleSimplebar();
       restartColorBackground();
+      activePlaylistCard();
+    });
+
+    swup.hooks.on("link:click", () => {
+      const header = document.querySelector(".header-container");
+      header?.classList.remove("header-scrolled");
     });
 
     swup.hooks.on("enable", () => {
       updgradeBackgroundColor();
       paintColorHeaderBySongCards();
       handleSimplebar();
+      restartColorBackground();
+      activePlaylistCard();
     });
-
-    function handleNavigation() {
-      const previousButton = document.getElementById("previous-button");
-      const nextButton = document.getElementById("next-button");
-
-      previousButton?.addEventListener("click", () => {
-        handlePrevious();
-      });
-
-      nextButton?.addEventListener("click", () => {
-        handleNext();
-      });
-    }
-
-    function handlePrevious() {
-      swup.navigate(window.history.state.previousUrl);
-    }
-
-    function handleNext() {
-      swup.navigate(window.history.state.nextUrl);
-    }
 
     function paintColorHeaderBySongCards() {
       document.documentElement.style.setProperty(
@@ -126,6 +111,24 @@ const { title } = Astro.props;
         card.addEventListener("mouseout", onMouseOutColorad);
         card.addEventListener("focus", () => onMouseFocusColorad(card));
         card.addEventListener("blur", onMouseOutColorad);
+      });
+    }
+
+    function activePlaylistCard() {
+      const navLinks = document.querySelectorAll(".playlist-card");
+      const currentId = window.location.pathname.split("/").pop(); // Obtiene el ID actual desde la URL
+
+      navLinks.forEach((link) => {
+        const id = link.getAttribute("data-id");
+
+        // eliminamos las clases existentes
+        link.classList.remove("bg-gray-500/30", "hover:bg-gray-500/20");
+
+        if (id === currentId) {
+          link.classList.add("bg-gray-500/30");
+        } else {
+          link.classList.add("hover:bg-gray-500/20");
+        }
       });
     }
 
@@ -146,18 +149,16 @@ const { title } = Astro.props;
     }
 
     function handleSimplebar() {
-      const mainContent = document.querySelector("main");
+      const mainContent = document.querySelector("#swup");
       const scrollElement = mainContent?.querySelector(
         ".simplebar-content-wrapper"
       );
-
-      new SimpleBar(mainContent as HTMLElement);
 
       if (scrollElement) {
         scrollElement.addEventListener("scroll", () => {
           const header = document.querySelector(".header-container");
           //console.log(scrollElement.scrollTop);
-          if (scrollElement.scrollTop > 200) {
+          if (scrollElement.scrollTop > 265) {
             header?.classList.add("header-scrolled");
           } else {
             header?.classList.remove("header-scrolled");
@@ -174,12 +175,6 @@ const { title } = Astro.props;
         mainBackground.style.setProperty("--context-color", defaultColor);
         mainBackground.setAttribute("data-color", defaultColor);
         mainBackground.style.backgroundColor = defaultColor;
-
-        // Cambiar el background-color de la clase .header-scrolled usando una variable CSS
-        document.documentElement.style.setProperty(
-          "--header-background-color",
-          defaultColor
-        );
       }
     }
 
