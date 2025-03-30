@@ -14,6 +14,7 @@
     "@astrojs/react": "^4.2.2",
     "@astrojs/vercel": "^8.0.4",
     "@radix-ui/react-slider": "^1.2.0",
+    "@swup/scroll-plugin": "^3.3.2",
     "@tailwindcss/vite": "^4.0.17",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
