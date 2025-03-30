@@ -1,6 +1,6 @@
 ---
 import type { Playlist } from "../../data/playlists";
-import {Play} from "../../icons/Play.jsx";
+import { Play } from "../../icons/Play.jsx";
 
 interface Props {
   playlists: Playlist[];
@@ -10,41 +10,42 @@ const { playlists } = Astro.props;
 ---
 
 <div>
-  <div class="flex flex-row justify-between items-center">
+  <div class='flex flex-row justify-between items-center'>
     <h1
-      class="text-2xl font-bold tracking-normal cursor-pointer hover:underline"
+      class='text-2xl font-bold tracking-normal cursor-pointer hover:underline'
     >
       Hecho para Nekolas
     </h1>
     <span
-      class="text-slate-300 text-sm tracking-wide font-bold cursor-pointer hover:underline"
+      class='text-slate-300 text-sm tracking-wide font-bold cursor-pointer hover:underline'
     >
       Mostrar todos
     </span>
   </div>
-  <div class="mt-5 recommended-container -mx-3">
+  <div class='mt-5 recommended-container -mx-3'>
     {
       playlists.map((playlist) => {
         return (
           <a
-            class="recommended-card p-3 bg-transparent cursor-pointer rounded-lg
-            hover:bg-[#1f1f1f] transition-all duration-200 ease"
-            data-color={playlist.color?.accent}
+            class='recommended-card p-3 bg-transparent cursor-pointer rounded-lg
+            hover:bg-[#1f1f1f] transition-all duration-200 ease'
             href={`/playlist/${playlist.id}`}
+            data-color={playlist.color?.accent}
+            data-astro-reload
           >
-            <div class="flex relative">
-              <img src={playlist.bannerImg} class="w-full rounded-md"/>
+            <div class='flex relative'>
+              <img src={playlist.bannerImg} class='w-full rounded-md' />
               <div
-                class="shadow-below rounded-full bg-green-500 p-3.5 cursor-pointer 
+                class='shadow-below rounded-full bg-green-500 p-3.5 cursor-pointer 
           flex items-center justify-center absolute bottom-0 right-0 mr-2 mb-2
-          hover:scale-105 transition-all duration-200 ease-out"
+          hover:scale-105 transition-all duration-200 ease-out'
               >
                 <Play />
               </div>
             </div>
-            <div class="flex flex-col gap-1 pt-2">
-              <h3 class="text-base font-medium">{playlist.name}</h3>
-              <span class="text-[#b3b3b3] text-wrap">{playlist.author}</span>
+            <div class='flex flex-col gap-1 pt-2'>
+              <h3 class='text-base font-medium'>{playlist.name}</h3>
+              <span class='text-[#b3b3b3] text-wrap'>{playlist.author}</span>
             </div>
           </a>
         );
