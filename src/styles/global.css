@@ -257,3 +257,13 @@ main {
   ), var(--header-background-color, initial);
   transition: opacity 0.3s ease;
 }
+
+.playlist-active {
+  color: #1ed760;
+  background-color: #6a72824d;
+}
+
+/* custom utility classes */
+.option-icon {
+  @apply cursor-pointer fill-[#B4B4B8] hover:fill-white transition-all duration-200 ease-out
+}
