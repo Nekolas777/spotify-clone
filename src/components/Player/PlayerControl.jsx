@@ -9,8 +9,8 @@ import { usePlayerStore } from "../../store/playerStore";
 import { useEffect, useRef } from "react";
 
 export const PlayerControl = () => {
-
-  const { currentMusic, isPlaying, setIsPlaying, audioRef, setAudioRef } = usePlayerStore();
+  const { currentMusic, isPlaying, setIsPlaying, audioRef, setAudioRef } =
+    usePlayerStore();
 
   useEffect(() => {
     /* console.log("Current Music: ", currentMusic); */
@@ -25,16 +25,15 @@ export const PlayerControl = () => {
       }
     }
   }, [currentMusic]);
-  
 
   const handlePlayButton = () => {
-    if(!audioRef.current) return;
+    if (!audioRef.current) return;
 
-    (isPlaying) ? audioRef.current.pause() : audioRef.current.play();
+    isPlaying ? audioRef.current.pause() : audioRef.current.play();
 
     setIsPlaying(!isPlaying);
-  }
-  
+  };
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.code === "Space") {
@@ -51,22 +50,24 @@ export const PlayerControl = () => {
   }, [isPlaying]);
 
   return (
-    <div className="flex flex-col items-center gap-1.5">
-      <audio ref={audioRef} preload="auto" />
-      <div className="flex flex-row gap-6 items-center">
-        <Shuffle size={4}/>
-        <BackwardStep/>
-        <button onClick={handlePlayButton} className="p-2.5 bg-white rounded-full">
-          {
-            isPlaying ? <Pause/> : <Play size="16px"/>
-          }
-          {/* <Pause/> */}
+    <div className='flex flex-col items-center gap-1.5'>
+      <audio ref={audioRef} preload='auto' />
+      <div className='flex flex-row gap-6 items-center'>
+        <figure className='fill-[#B4B4B8]'>
+          <Shuffle size={4} />
+        </figure>
+        <BackwardStep />
+        <button
+          onClick={handlePlayButton}
+          className='p-2.5 bg-white rounded-full cursor-pointer'
+        >
+          {isPlaying ? <Pause /> : <Play size='16px' />}
         </button>
-        <ForwardStep/>
-        <Repeat/>
+        <ForwardStep />
+        <Repeat />
       </div>
       <div>
-        <SongControl/>
+        <SongControl />
       </div>
     </div>
   );
