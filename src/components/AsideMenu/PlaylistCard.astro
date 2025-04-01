@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import AudioActive from "src/icons/AudioActive.astro";
 
 const { playlistId, name, type, author, bannerImg } = Astro.props;
 ---
@@ -19,12 +20,17 @@ const { playlistId, name, type, author, bannerImg } = Astro.props;
       alt={name}
     />
   </div>
-  <div class='flex flex-col gap-0.5 mb-0.5'>
-    <p class='tracking-normal font-medium'>{name}</p>
-    <div class='flex flex-row items-center gap-2'>
-      <span class='text-sm text-[#b3b3b3] font-medium'>
-        {type} • {author}
-      </span>
+  <div class="flex-1 flex justify-between items-center pr-1">
+    <div class='flex flex-col gap-0.5 mb-0.5'>
+      <p class='tracking-normal font-medium'>{name}</p>
+      <div class='flex flex-row items-center gap-2'>
+        <span class='text-sm text-[#b3b3b3] font-medium'>
+          {type} • {author}
+        </span>
+      </div>
     </div>
+    <figure class="hidden items-center justify-center w-4 h-4 rounded-full fill-green-500">
+      <AudioActive />
+    </figure>
   </div>
 </a>
