@@ -1,14 +1,13 @@
-export const Pause = () => {
+export const Pause = ({ size = "18px" }) => {
   return (
     <svg
-      data-encore-id="icon"
-      role="img"
-      aria-hidden="true"
-      viewBox="0 0 16 16"
-      className="w-4 h-4"
-      fill="#000"
+      style={{ width: size, height: size }}
+      data-encore-id='icon'
+      role='img'
+      aria-hidden='true'
+      viewBox='0 0 16 16'
     >
-      <path d="M2.7 1a.7.7 0 0 0-.7.7v12.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7H2.7zm8 0a.7.7 0 0 0-.7.7v12.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-2.6z"></path>
+      <path d='M2.7 1a.7.7 0 0 0-.7.7v12.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7H2.7zm8 0a.7.7 0 0 0-.7.7v12.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-2.6z'></path>
     </svg>
   );
 };
