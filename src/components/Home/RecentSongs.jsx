@@ -17,13 +17,12 @@ export const RecentSongs = ({ songs }) => {
 
   const handleSongClick = (song) => {
     if (song.id !== currentMusic.song.id) {
-      // Cambiar la canción solo si es diferente
       setCurrentMusic({
         ...currentMusic,
         song: song,
       });
-      setIsPlaying(true); // Reproducir la nueva canción
-      setProgress(0); // Reiniciar el progreso
+      setIsPlaying(true);
+      setProgress(0);
     } else {
       // Si es la misma canción, alternar reproducción/pausa
       setIsPlaying(!isPlaying);
@@ -48,7 +47,7 @@ export const RecentSongs = ({ songs }) => {
         return (
           <div
             key={song.id}
-            className='bg-[hsla(0,0%,100%,.07)] flex flex-row cursor-pointer
+            className='bg-[hsla(0,0%,100%,.07)] flex flex-row cursor-pointer select-none
           hover:bg-[hsla(0,0%,100%,.2)] transition-all duration-300 ease'
             data-color={song.color?.accent}
             onMouseEnter={() => setHoveredSongId(song.id)}
