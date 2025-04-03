@@ -10,6 +10,7 @@ export interface Song {
   date: string;
   duration: string;
   musicPath: string;
+  isFavorite: boolean;
 }
 
 export const songs: Song[] = [
@@ -23,6 +24,7 @@ export const songs: Song[] = [
     date: "15 mar 2015",
     duration: "3:28",
     musicPath: "/music/On&On.mp3",
+    isFavorite: false
   },
   {
     id: 2,
@@ -34,6 +36,7 @@ export const songs: Song[] = [
     date: "10 jul 2016",
     duration: "3:33",
     musicPath: "/music/WhyWeLose.mp3",
+    isFavorite: false
   },
   {
     id: 3,
@@ -45,6 +48,7 @@ export const songs: Song[] = [
     date: "20 nov 2014",
     duration: "2:46",
     musicPath: "/music/Nekozilla.mp3",
+    isFavorite: false
   },
   {
     id: 4,
@@ -56,6 +60,7 @@ export const songs: Song[] = [
     date: "5 feb 2020",
     duration: "3:43",
     musicPath: "/music/Royalty.mp3",
+    isFavorite: false
   },
   {
     id: 5,
@@ -67,6 +72,7 @@ export const songs: Song[] = [
     date: "12 jun 2017",
     duration: "2:45",
     musicPath: "/music/UnderWater.mp3",
+    isFavorite: false
   },
   {
     id: 6,
@@ -78,6 +84,7 @@ export const songs: Song[] = [
     date: "18 sep 2018",
     duration: "4:20",
     musicPath: "/music/Outlaw.mp3",
+    isFavorite: false
   },
   {
     id: 7,
@@ -89,6 +96,7 @@ export const songs: Song[] = [
     date: "25 dec 2016",
     duration: "3:45",
     musicPath: "/music/Firefly.mp3",
+    isFavorite: false
   },
   {
     id: 8,
@@ -100,6 +108,7 @@ export const songs: Song[] = [
     date: "8 jan 2021",
     duration: "2:40",
     musicPath: "/music/TakingItSlow.mp3",
+    isFavorite: false
   },
   {
     id: 9,
@@ -111,6 +120,7 @@ export const songs: Song[] = [
     date: "14 oct 2019",
     duration: "2:51",
     musicPath: "/music/Overdose.mp3",
+    isFavorite: false
   },
   {
     id: 10,
@@ -122,6 +132,7 @@ export const songs: Song[] = [
     date: "3 may 2023",
     duration: "1:54",
     musicPath: "/music/DifferentEyes.mp3",
+    isFavorite: false
   },
   {
     id: 11,
@@ -133,6 +144,7 @@ export const songs: Song[] = [
     date: "22 aug 2020",
     duration: "3:08",
     musicPath: "/music/WhitoutYou.mp3",
+    isFavorite: false
   },
   {
     id: 12,
@@ -144,6 +156,7 @@ export const songs: Song[] = [
     date: "30 apr 2022",
     duration: "2:59",
     musicPath: "/music/Vibe.mp3",
+    isFavorite: false
   },
   {
     id: 13,
@@ -155,6 +168,7 @@ export const songs: Song[] = [
     date: "25 sept 2024",
     duration: "3:14",
     musicPath: "/music/FearlessPtII.mp3",
+    isFavorite: false
   },
   {
     id: 14,
@@ -166,6 +180,7 @@ export const songs: Song[] = [
     date: "10 feb 2023",
     duration: "3:43",
     musicPath: "/music/WhyDoI.mp3",
+    isFavorite: false
   },
   {
     id: 15,
@@ -177,5 +192,6 @@ export const songs: Song[] = [
     date: "1 jun 2015",
     duration: "3:48",
     musicPath: "/music/Mortals.mp3",
+    isFavorite: false
   },
 ];
