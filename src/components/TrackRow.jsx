@@ -3,9 +3,12 @@ import { usePlayerStore } from "../store/playerStore.js";
 import FormatArtists from "./FormatArtists.jsx";
 import { Play } from "src/icons/Play.jsx";
 import { Pause } from "src/icons/Pause.jsx";
+import { Heart } from "src/icons/Heart.jsx";
+import { toggleFavoriteTrack } from "src/utils/helpers/localStorage.js";
 
-export const PlaylistRow = ({ songItem }) => {
-  const { id, bannerImage, artists, title, album, date, duration } = songItem;
+export const TrackRow = ({ songItem }) => {
+  const { id, bannerImage, artists, title, album, date, duration, isFavorite } =
+    songItem;
 
   const [hoveredSongId, setHoveredSongId] = useState(null);
 
@@ -16,6 +19,7 @@ export const PlaylistRow = ({ songItem }) => {
     setIsPlaying,
     setProgress,
     audioRef,
+    createFavoriteSong,
   } = usePlayerStore();
 
   const handleSongClick = (song) => {
@@ -42,11 +46,25 @@ export const PlaylistRow = ({ songItem }) => {
     setIsPlaying(false);
   };
 
+  const handleFavoriteTrack = (id) => {
+    toggleFavoriteTrack(id);
+    createFavoriteSong(id);
+    if (id === currentMusic.song.id) {
+      setCurrentMusic({
+        ...currentMusic,
+        song: {
+          ...currentMusic.song,
+          isFavorite: isFavorite,
+        },
+      });
+    }
+  };
+
   const isCurrentSong = id === currentMusic.song.id;
 
   return (
     <tr
-      className='group hover:bg-gray-500/20'
+      className='group hover:bg-gray-500/20 select-none'
       onMouseEnter={() => setHoveredSongId(id)}
       onMouseLeave={() => setHoveredSongId(null)}
     >
@@ -58,7 +76,7 @@ export const PlaylistRow = ({ songItem }) => {
               className='fill-[#FFFFFF] flex items-center justify-center'
               onClick={handlePauseClick}
             >
-              <Pause size="14" />
+              <Pause size='14' />
             </figure>
           ) : (
             <figure className='flex items-center justify-center'>
@@ -74,7 +92,7 @@ export const PlaylistRow = ({ songItem }) => {
             className='fill-[#FFFFFF] flex items-center justify-center'
             onClick={() => handleSongClick(songItem)}
           >
-            <Play size="14" />
+            <Play size='14' />
           </figure>
         ) : (
           <span className='text-gray-300'>{id}</span>
@@ -92,7 +110,9 @@ export const PlaylistRow = ({ songItem }) => {
           <a
             href='#'
             className={`hover:underline text-base font-medium ${
-              isPlaying & isCurrentSong ? "text-green-500" : "text-slate-50 group-hover:text-white"
+              currentMusic.song.id === id
+                ? "text-green-500"
+                : "text-slate-50 group-hover:text-white"
             }`}
           >
             {title}
@@ -117,6 +137,19 @@ export const PlaylistRow = ({ songItem }) => {
         >
           {date}
         </a>
+      </td>
+      <td className='whitespace-nowrap text-gray-300'>
+        <figure
+          onClick={() => handleFavoriteTrack(id)}
+          className={`cursor-pointer invisible group-hover:visible flex items-center justify-center w-auto translate-y-[1px] ${
+            isFavorite
+              ? "text-green-500 fill-green-500"
+              : "text-gray-300 fill-none"
+          }`}
+          role='button'
+        >
+          <Heart />
+        </figure>
       </td>
       <td className='whitespace-nowrap text-gray-300 px-4 py-2.5 text-center'>
         {duration}

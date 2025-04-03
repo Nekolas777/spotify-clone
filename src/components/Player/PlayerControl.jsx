@@ -24,7 +24,7 @@ export const PlayerControl = () => {
         audioRef.current.play();
       }
     }
-  }, [currentMusic]);
+  }, [currentMusic.song.musicPath]);
 
   const handlePlayButton = () => {
     if (!audioRef.current) return;
@@ -61,7 +61,7 @@ export const PlayerControl = () => {
           onClick={handlePlayButton}
           className='p-2.5 bg-white rounded-full cursor-pointer'
         >
-          {isPlaying ? <Pause /> : <Play size='16px' />}
+          {isPlaying ? <Pause size="16px" /> : <Play size='16px' />}
         </button>
         <ForwardStep />
         <Repeat />

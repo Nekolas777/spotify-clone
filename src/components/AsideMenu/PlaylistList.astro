@@ -7,9 +7,10 @@ import PlaylistCard from "./PlaylistCard.astro";
 
 <div class=''>
   {/* This card is for most songs liked list owo */}
-  <article
+  <a
     class='flex flex-row gap-3 items-center rounded-[4px] p-2
       hover:bg-slate-800 transition-all duration-150'
+    href='/collection/tracks'
   >
     <div class='flex'>
       <Image
@@ -29,7 +30,7 @@ import PlaylistCard from "./PlaylistCard.astro";
         >
       </div>
     </div>
-  </article>
+  </a>
   {
     playlists.map((playlist: Playlist) => (
       <PlaylistCard
