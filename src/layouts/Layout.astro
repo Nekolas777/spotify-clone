@@ -120,20 +120,14 @@ const { title } = Astro.props;
 
       navLinks.forEach((link) => {
         const id = link.getAttribute("data-id");
-        const figure = link.querySelector("figure");
 
         // Eliminamos las clases existentes
         link.classList.remove("playlist-active", "hover:bg-gray-500/20");
-        figure?.classList.add("hidden");
 
         if (id === currentId) {
           link.classList.add("playlist-active");
-          figure?.classList.remove("hidden");
-          figure?.classList.add("flex");
         } else {
           link.classList.add("hover:bg-gray-500/20");
-          figure?.classList.remove("flex");
-          figure?.classList.add("hidden");
         }
       });
     }
