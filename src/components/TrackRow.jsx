@@ -20,6 +20,7 @@ export const TrackRow = ({ songItem }) => {
     setProgress,
     audioRef,
     createFavoriteSong,
+    setRefreshTable,
   } = usePlayerStore();
 
   const handleSongClick = (song) => {
@@ -58,6 +59,7 @@ export const TrackRow = ({ songItem }) => {
         },
       });
     }
+    setRefreshTable((prev) => prev + 1); // forzamos la actualización de la tabla
   };
 
   const isCurrentSong = id === currentMusic.song.id;
