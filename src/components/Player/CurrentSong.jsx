@@ -5,7 +5,7 @@ import FormatArtists from "../FormatArtists";
 import { useEffect, useState } from "react";
 
 export const CurrentSong = () => {
-  const { currentMusic, createFavoriteSong } = usePlayerStore();
+  const { currentMusic, createFavoriteSong, setRefreshTable } = usePlayerStore();
 
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -13,6 +13,7 @@ export const CurrentSong = () => {
     toggleFavoriteTrack(currentMusic.song.id);
     createFavoriteSong(currentMusic.song.id);
     setIsFavorite(!isFavorite);
+    setRefreshTable((prev) => prev + 1);
   };
 
   useEffect(() => {
