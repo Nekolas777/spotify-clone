@@ -1,4 +1,4 @@
-export const TableSkeleton = () => {
+export const TableSkeleton = ({ rows = 15 }) => {
   return (
     <div className='px-5'>
       <table className='table-auto text-left min-w-full animate-pulse'>
@@ -22,57 +22,25 @@ export const TableSkeleton = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className='whitespace-nowrap py-4 px-4 text-sm'>
-              <div className='h-4 bg-slate-50/30 rounded w-4'></div>
-            </td>
-            <td className='whitespace-nowrap px-4 py-4 text-sm'>
-              <div className='h-4 bg-slate-50/30 rounded w-24'></div>
-            </td>
-            <td className='whitespace-nowrap px-4 py-4 text-sm'>
-              <div className='h-4 bg-slate-50/30 rounded w-24'></div>
-            </td>
-            <td className='whitespace-nowrap px-4 py-4 text-sm'>
-              <div className='h-4 bg-slate-50/30 rounded w-24'></div>
-            </td>
-            <td className='whitespace-nowrap px-4 py-4 text-center'>
-              <div className='h-4 bg-slate-50/30 rounded w-4'></div>
-            </td>
-          </tr>
-          <tr>
-            <td className='whitespace-nowrap py-4 px-4 text-sm'>
-              <div className='h-4 bg-slate-50/30 rounded w-4'></div>
-            </td>
-            <td className='whitespace-nowrap px-4 py-4 text-sm'>
-              <div className='h-4 bg-slate-50/30 rounded w-24'></div>
-            </td>
-            <td className='whitespace-nowrap px-4 py-4 text-sm'>
-              <div className='h-4 bg-slate-50/30 rounded w-24'></div>
-            </td>
-            <td className='whitespace-nowrap px-4 py-4 text-sm'>
-              <div className='h-4 bg-slate-50/30 rounded w-24'></div>
-            </td>
-            <td className='whitespace-nowrap px-4 py-4 text-center'>
-              <div className='h-4 bg-slate-50/30 rounded w-4'></div>
-            </td>
-          </tr>
-          <tr>
-            <td className='whitespace-nowrap py-4 px-4 text-sm'>
-              <div className='h-4 bg-slate-50/30 rounded w-4'></div>
-            </td>
-            <td className='whitespace-nowrap px-4 py-4 text-sm'>
-              <div className='h-4 bg-slate-50/30 rounded w-24'></div>
-            </td>
-            <td className='whitespace-nowrap px-4 py-4 text-sm'>
-              <div className='h-4 bg-slate-50/30 rounded w-24'></div>
-            </td>
-            <td className='whitespace-nowrap px-4 py-4 text-sm'>
-              <div className='h-4 bg-slate-50/30 rounded w-24'></div>
-            </td>
-            <td className='whitespace-nowrap px-4 py-4 text-center'>
-              <div className='h-4 bg-slate-50/30 rounded w-4'></div>
-            </td>
-          </tr>
+          {[...Array(rows)].map((_, index) => (
+            <tr key={index}>
+              <td className='whitespace-nowrap py-4 px-4 text-sm'>
+                <div className='h-4 bg-slate-50/30 rounded w-4'></div>
+              </td>
+              <td className='whitespace-nowrap px-4 py-4 text-sm'>
+                <div className='h-4 bg-slate-50/30 rounded w-24'></div>
+              </td>
+              <td className='whitespace-nowrap px-4 py-4 text-sm'>
+                <div className='h-4 bg-slate-50/30 rounded w-24'></div>
+              </td>
+              <td className='whitespace-nowrap px-4 py-4 text-sm'>
+                <div className='h-4 bg-slate-50/30 rounded w-24'></div>
+              </td>
+              <td className='whitespace-nowrap px-4 py-4 text-center'>
+                <div className='h-4 bg-slate-50/30 rounded w-4'></div>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

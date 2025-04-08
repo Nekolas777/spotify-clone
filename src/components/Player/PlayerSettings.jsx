@@ -6,12 +6,20 @@ import { VolumeControl } from "./VolumeControl"
 
 export const PlayerSettings = () => {
   return (
-    <div className="flex flex-row gap-4">
-      <CurrentSongView />
-      <Queue />
-      <ConnectDevice />
+    <div className="flex flex-row gap-4 w-fit">
+      <figure className="hidden sm:flex">
+        <CurrentSongView />
+      </figure>
+      <figure className="hidden sm:flex">
+        <Queue />
+      </figure>
+      <figure className="hidden sm:flex">
+        <ConnectDevice />
+      </figure>
       <VolumeControl />
-      <Expand/>
+      <figure className="hidden sm:flex">
+        <Expand />
+      </figure>
     </div>
   )
 }

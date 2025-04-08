@@ -13,7 +13,6 @@ export const PlayerControl = () => {
     usePlayerStore();
 
   useEffect(() => {
-    /* console.log("Current Music: ", currentMusic); */
     if (audioRef.current) {
       // actualziamos la fuente del audio cuando cambie la canción
       audioRef.current.src = currentMusic.song.musicPath;
@@ -50,25 +49,25 @@ export const PlayerControl = () => {
   }, [isPlaying]);
 
   return (
-    <div className='flex flex-col items-center gap-1.5'>
+    <div className='flex flex-col items-center gap-1.5 w-full flex-1'>
       <audio ref={audioRef} preload='auto' />
       <div className='flex flex-row gap-6 items-center'>
-        <figure className='fill-[#B4B4B8]'>
+        <figure className='hidden sm:block fill-[#B4B4B8]'>
           <Shuffle size={4} />
         </figure>
         <BackwardStep />
         <button
           onClick={handlePlayButton}
-          className='p-2.5 bg-white rounded-full cursor-pointer'
+          className='p-2 bg-white rounded-full cursor-pointer hover:opacity-90 hover:scale-105'
         >
-          {isPlaying ? <Pause size="16px" /> : <Play size='16px' />}
+          {isPlaying ? <Pause size='16px' /> : <Play size='16px' />}
         </button>
         <ForwardStep />
-        <Repeat />
+        <figure className="hidden sm:block">
+          <Repeat />
+        </figure>
       </div>
-      <div>
-        <SongControl />
-      </div>
+      <SongControl />
     </div>
   );
 };

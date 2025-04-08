@@ -9,7 +9,7 @@ interface Props {
 const { playlists } = Astro.props;
 ---
 
-<div>
+<div class="@container px-5">
   <div class='flex flex-row justify-between items-center'>
     <h1
       class='text-2xl font-bold tracking-normal cursor-pointer hover:underline'
@@ -17,7 +17,7 @@ const { playlists } = Astro.props;
       Hecho para Nekolas
     </h1>
     <span
-      class='text-slate-300 text-sm tracking-wide font-bold cursor-pointer hover:underline'
+      class='text-slate-300 text-sm tracking-wide font-bold cursor-pointer hover:underline hidden @sm:block'
     >
       Mostrar todos
     </span>

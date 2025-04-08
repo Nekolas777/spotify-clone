@@ -7,13 +7,15 @@ import {
 } from "src/utils/helpers/localStorage";
 import { useEffect, useState } from "react";
 import { TableSkeleton } from "./TableSkeleton";
+import { songs } from "src/data/songs";
 
 export const MusicsTable = ({ type = "all" }) => {
   // obtenems la lista de canciones del store
-  const { tracks, setTracks } = usePlayerStore();
+  const { tracks, setTracks, refreshTable } = usePlayerStore();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    /* console.log("refreshTable", refreshTable); */
     setIsLoading(true);
     switch (type) {
       case "all":
@@ -26,16 +28,16 @@ export const MusicsTable = ({ type = "all" }) => {
         break;
     }
     setIsLoading(false);
-  }, [type]);
+  }, [type, refreshTable]);
 
   if (isLoading) {
     return (
-      <TableSkeleton />
+      <TableSkeleton rows={songs.length} />
     );
   }
 
   return (
-    <div className='px-5'>
+    <div className='px-5 pb-2 contain-inline-size min-w-auto overflow-x-auto relative'>
       {tracks.length > 0 ? (
         <table className='table-auto text-left min-w-full'>
           <thead className='border-b-[1px] border-gray-300/30 z-50'>
@@ -58,7 +60,7 @@ export const MusicsTable = ({ type = "all" }) => {
           </thead>
           <tbody>
             {tracks?.map((song) => (
-              <TrackRow client songItem={song} key={song.title} />
+              <TrackRow songItem={song} key={song.title} />
             ))}
           </tbody>
         </table>

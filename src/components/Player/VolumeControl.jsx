@@ -33,7 +33,7 @@ export const VolumeControl = () => {
   }
 
   return (
-    <div className='flex flex-row items-center gap-2'>
+    <div className='flex flex-row items-center gap-2 w-full'>
       <figure onClick={handleVolumeClick}>
         {volume === 0 ? (
           <VolumeMute />
@@ -43,10 +43,10 @@ export const VolumeControl = () => {
           <VolumeUp />
         )}
       </figure>
-      <div className='block'>
+      <div className='block w-[50px] xs:w-[100px]'>
         <Slider.Root
-          className='w-[100px] relative flex items-center'
-          defaultValue={[100]}
+          className='relative flex items-center'
+          defaultValue={[100]}z
           value={[volume]}
           max={100}
           min={0}
