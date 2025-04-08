@@ -1,42 +1,46 @@
 ---
-import {Play} from "../../icons/Play.jsx";
+import { recentlyHeards } from "src/data/recently-heards";
+import { Play } from "../../icons/Play.jsx";
 ---
 
-<div>
-  <div class="flex flex-row justify-between items-center">
+<div class='@container px-5'>
+  <div class='flex flex-row justify-between items-center'>
     <h1
-      class="text-2xl font-bold tracking-normal cursor-pointer hover:underline"
+      class='text-2xl font-bold tracking-normal cursor-pointer hover:underline'
     >
       Escuchados recientemente
     </h1>
     <span
-      class="text-slate-300 text-sm tracking-wide font-bold cursor-pointer hover:underline"
+      class='text-slate-300 text-sm tracking-wide font-bold cursor-pointer hover:underline hidden @sm:block'
     >
       Mostrar todos
     </span>
   </div>
-  <div class="mt-5 recently-heard-container -mx-3">
-    <article
-      class="recommended-card p-3 bg-transparent cursor-pointer rounded-lg
-        hover:bg-[#121212] transition-all duration-200 ease"
-    >
-      <div class="flex relative">
-        <img src="/img/recently-heard-example.jpg" class="w-full" />
-        <div
-          class="shadow-below rounded-full bg-green-500 p-3.5 cursor-pointer
-          flex items-center justify-center absolute bottom-0 right-0 mr-2 mb-2
-          hover:scale-105 transition-all duration-200 ease-out"
+  <div class='mt-5 recommended-container -mx-3'>
+    {
+      recentlyHeards.map((song) => (
+        <article
+          class='recommended-card p-3 cursor-pointer rounded-lg bg-transparent
+          hover:bg-[hsla(0,0%,100%,.07)] transition-all duration-300 ease'
         >
-          <Play />
-        </div>
-      </div>
-      <div class="flex flex-col gap-1 pt-2">
-        <h3 class="text-base font-medium">Mi primera chamba</h3>
-        <span class="text-[#b3b3b3] text-wrap text-sm"
-          >Me acuerdo del día que del dinero yo me enamoré 💸💰💸 con Eladio
-          Carrion en la portada</span
-        >
-      </div>
-    </article>
+          <div class='flex relative'>
+            <img src={song.bannerImg} class='w-full' />
+            <div
+              class='shadow-below rounded-full bg-green-500 p-3.5 cursor-pointer
+              flex items-center justify-center absolute bottom-0 right-0 mr-2 mb-2
+              hover:scale-105 transition-all duration-200 ease-out'
+            >
+              <Play />
+            </div>
+          </div>
+          <div class='flex flex-col gap-1 pt-2'>
+            <h3 class='text-base font-medium'>{song.title}</h3>
+            <span class='text-[#b3b3b3] text-wrap text-sm'>
+              {song.description}
+            </span>
+          </div>
+        </article>
+      ))
+    }
   </div>
 </div>
