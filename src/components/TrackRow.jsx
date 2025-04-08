@@ -141,7 +141,7 @@ export const TrackRow = ({ songItem }) => {
       <td className='whitespace-nowrap text-gray-300'>
         <figure
           onClick={() => handleFavoriteTrack(id)}
-          className={`cursor-pointer invisible group-hover:visible flex items-center justify-center w-auto translate-y-[1px] ${
+          className={`heart cursor-pointer invisible group-hover:visible flex items-center justify-center w-auto translate-y-[1px] ${
             isFavorite
               ? "text-green-500 fill-green-500"
               : "text-gray-300 fill-none"
