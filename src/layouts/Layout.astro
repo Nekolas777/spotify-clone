@@ -24,8 +24,8 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <div id='app' class='relative h-screen p-2 gap-2'>
-      <aside class='[grid-area:aside] flex-col flex-grow-1'>
+    <div id='app' class='relative h-screen px-2 pt-2 pb-0 xl:pt-2 xl:pl-2 xl:pr-2 xl:pb-2 gap-2'>
+      <aside class='[grid-area:aside] flex flex-col flex-grow-1'>
         <AsideMenu />
       </aside>
 
@@ -53,6 +53,25 @@ const { title } = Astro.props;
           "player player player";
         grid-template-columns: 350px 1fr;
         grid-template-rows: 1fr 72px;
+      }
+
+      @media (max-width: 1024px) {
+        #app {
+          grid-template-areas:
+            "main main"
+            "player player";
+          grid-template-columns: 1fr; /* Solo una columna */
+          grid-template-rows: 1fr 72px; /* Dos filas */
+        }
+
+        aside {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 350px;
+          height: 100%;
+          z-index: 100;
+        }
       }
     </style>
   </body>
