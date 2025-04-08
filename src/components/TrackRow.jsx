@@ -6,7 +6,7 @@ import { Pause } from "src/icons/Pause.jsx";
 import { Heart } from "src/icons/Heart.jsx";
 import { toggleFavoriteTrack } from "src/utils/helpers/localStorage.js";
 
-export const TrackRow = ({ songItem }) => {
+export const TrackRow = ({ songItem, index }) => {
   const { id, bannerImage, artists, title, album, date, duration, isFavorite } =
     songItem;
 
@@ -97,7 +97,7 @@ export const TrackRow = ({ songItem }) => {
             <Play size='14' />
           </figure>
         ) : (
-          <span className='text-gray-300'>{id}</span>
+          <span className='text-gray-300'>{index + 1}</span>
         )}
       </td>
       <td className='whitespace-nowrap px-4 py-2.5 flex gap-3 items-center'>
