@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-xs: 30rem;
+  --breakpoint-2xl: 100rem;
+  --breakpoint-3xl: 120rem; 
+}
+
+:root {
+  --custom-bg-color: transparent;
+}
+
 .border {
   border: 1px solid red;
 }
@@ -246,16 +256,13 @@ main {
 }
 
 .header-container {
-  transition: opacity 0.3s linear;
+  transition: background-color 0.3s linear;
 }
 
 
 .header-scrolled {
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.6), 
-      rgba(0, 0, 0, 0.6)
-  ), var(--header-background-color, initial);
-  transition: opacity 0.3s ease;
+  background-color: var(--header-background-color, initial);
+  transition: background-color 0.3s ease;
 }
 
 .playlist-active {
