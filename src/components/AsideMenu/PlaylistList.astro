@@ -5,7 +5,7 @@ import PinIcon from "src/icons/PinIcon.astro";
 import PlaylistCard from "./PlaylistCard.astro";
 ---
 
-<div class=''>
+<div class='relative'>
   {/* This card is for most songs liked list owo */}
   <a
     class='flex flex-row gap-3 items-center rounded-[4px] p-2
@@ -26,7 +26,7 @@ import PlaylistCard from "./PlaylistCard.astro";
       <div class='flex flex-row items-center gap-2'>
         <PinIcon />
         <span class='text-sm text-[#b3b3b3] font-medium'
-          >Lista • 128 canción</span
+          >Lista • <span class='favorites-size'>0</span> canción</span
         >
       </div>
     </div>
@@ -43,3 +43,32 @@ import PlaylistCard from "./PlaylistCard.astro";
     ))
   }
 </div>
+
+<script>
+  import { getFavoritesTracks } from "src/utils/helpers/localStorage";
+
+  function updateFavoritesSize() {
+    const favoritesSize = document.querySelector(
+      ".favorites-size"
+    ) as HTMLElement;
+    const favorites = getFavoritesTracks();
+
+    if (favoritesSize) {
+      favoritesSize.innerText = favorites.length.toString();
+    } else {
+      console.error("Favorites size element not found.");
+    }
+  }
+
+  // Agregar un event listener a los elementos con la clase .heart
+  document.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+
+    if (target.closest(".heart")) {
+      console.log("Corazón clicado");
+      updateFavoritesSize();
+    }
+  });
+
+  updateFavoritesSize();
+</script>
