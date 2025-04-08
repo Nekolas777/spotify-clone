@@ -15,7 +15,7 @@ export const MusicsTable = ({ type = "all" }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log("refreshTable", refreshTable);
+    /* console.log("refreshTable", refreshTable); */
     setIsLoading(true);
     switch (type) {
       case "all":
@@ -37,7 +37,7 @@ export const MusicsTable = ({ type = "all" }) => {
   }
 
   return (
-    <div className='px-5'>
+    <div className='px-5 pb-2 contain-inline-size min-w-auto overflow-x-auto relative'>
       {tracks.length > 0 ? (
         <table className='table-auto text-left min-w-full'>
           <thead className='border-b-[1px] border-gray-300/30 z-50'>
