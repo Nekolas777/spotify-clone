@@ -12,7 +12,7 @@ const backgroundColor = "#5038A0";
 ---
 
 <Layout title='Favorites Songs'>
-  <section class='mt-20 py-3 relative'>
+  <section class='@container mt-20 pt-3 relative'>
     <div class='flex flex-row gap-5 px-6 pb-8 relative'>
       <div
         id='banner-playlist-background'
@@ -24,19 +24,37 @@ const backgroundColor = "#5038A0";
       <div class='flex'>
         <img
           src='https://misc.scdn.co/liked-songs/liked-songs-300.jpg'
-          class='w-56 h-56'
+          class='min-w-32 min-h-32 w-full h-full max-w-56 max-h-56'
           style='box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);'
         />
       </div>
-      <div class='flex flex-col text-white justify-end gap-3'>
+      <div class='flex flex-col text-white justify-end gap-3 truncate'>
         <span class=''>Lista pública</span>
-        <h1 class='text-6xl font-bold ml-[-3px]'>Canciones que te gustan</h1>
-        <span>
+        <div
+          class='relative overflow-hidden whitespace-nowrap @md:overflow-auto @md:whitespace-normal'
+        >
+          <h1
+            class='text-4xl @2xl:text-5xl @4xl:text-6xl font-bold ml-[-3px] inline-block whitespace-nowrap 
+            animate-[scroll-loop_20s_linear_infinite] @md:block @md:whitespace-nowrap overflow-hidden @md:animate-none'
+          >
+            <span>Canciones que te gustan</span>
+            <span class='inline @md:hidden'>&nbsp;</span>
+            <span class='inline @md:hidden'>Canciones que te gustan</span>
+            <span class='inline @md:hidden'>&nbsp;</span>
+            <span class='inline @md:hidden'>Canciones que te gustan</span>
+            <span class='inline @md:hidden'>&nbsp;</span>
+            <span class='inline @md:hidden'>Canciones que te gustan</span>
+          </h1>
+        </div>
+        <span class='text-sm @2xl:text-base'>
           Guarda tus canciones favoritas y escúchalas en cualquier momento.
         </span>
         <div class='flex flex-row gap-2 items-center mt-1.5'>
-          <img src="https://avatars.githubusercontent.com/u/120282675?v=4" class='max-w-6 rounded-full' />
-          <p class='mt-[-3px]'>
+          <img
+            src='https://avatars.githubusercontent.com/u/120282675?v=4'
+            class='max-w-5 @2xl:max-w-6 rounded-full'
+          />
+          <p class='text-sm @2xl:text-base mt-[-2px]'>
             <span class='font-bold'>Nekolas Esteban</span> • 7 canciones, 28 min,
           </p>
         </div>
@@ -49,20 +67,20 @@ const backgroundColor = "#5038A0";
         style={`--custom-bg-color: ${backgroundColor};`}
       >
       </div>
-      <div class='flex flex-row gap-[20px] items-center br'>
+      <div class='flex flex-row gap-[16px] @md:gap-[20px] items-center'>
         <div
-          class='rounded-full bg-green-500 p-[18px] cursor-pointer flex items-center
-        justify-center hover:scale-105 transition-scale duration-200 ease-out'
+          class='rounded-full bg-green-500 p-[14px] @sm:p-[18px] cursor-pointer flex items-center
+          justify-center hover:scale-105 transition-scale duration-200 ease-out'
         >
           <Play />
         </div>
         <figure class='option-icon'>
           <SaveIcon />
         </figure>
-        <figure class='option-icon'>
+        <figure class='option-icon hidden @sm:block'>
           <Shuffle size={7} />
         </figure>
-        <figure class='option-icon'>
+        <figure class='option-icon hidden @md:block'>
           <Download size='7' />
         </figure>
         <figure class='option-icon'>
@@ -78,6 +96,6 @@ const backgroundColor = "#5038A0";
         </figure>
       </div>
     </div>
-    <MusicsTable type="favorites" client:load />
+    <MusicsTable type='favorites' client:load />
   </section>
 </Layout>
