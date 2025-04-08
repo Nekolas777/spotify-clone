@@ -24,35 +24,40 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <div id='app' class='relative h-screen p-2 gap-2'>
-      <aside class='[grid-area:aside] flex-col flex-grow-1'>
-        <AsideMenu />
-      </aside>
+    <div id='app' class='relative min-h-screen h-screen max-h-screen w-full flex flex-col bg-black text-white overflow-hidden 
+      px-2 pt-2 pb-0 lg:pt-2 lg:pl-2 lg:pr-2 lg:pb-2'>
+      <div class="w-full flex flex-row gap-2 overflow-hidden h-full">
+        <aside class='max-w-[350px] flex flex-col flex-grow-1'>
+          <AsideMenu />
+        </aside>
+  
+        <main
+          class='rounded-lg flex-1 bg-[#121212] w-full h-full relative'
+          onkeydown='onKeyDown(event)'
+        >
+          <Header />
+          <div id='swup' class='transition-main h-full' data-simplebar>
+            <MainBackground />
+            <slot />
+          </div>
+        </main>
+      </div>
 
-      <main
-        class='[grid-area:main] rounded-lg flex-1 bg-[#121212] w-full h-full relative'
-        onkeydown='onKeyDown(event)'
-      >
-        <Header />
-        <div id='swup' class='transition-main h-full' data-simplebar>
-          <MainBackground />
-          <slot />
-        </div>
-      </main>
-
-      <footer class='[grid-area:player] px-2 py-1.5 z-[100] bg-black'>
+      <footer class='w-full px-2 py-1.5 z-[100] bg-black h-[72px]'>
         <Player client:load />
       </footer>
     </div>
 
     <style is:global>
-      #app {
-        display: grid;
-        grid-template-areas:
-          "aside main main"
-          "player player player";
-        grid-template-columns: 350px 1fr;
-        grid-template-rows: 1fr 72px;
+      @media (max-width: 1024px) {
+        aside {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 350px;
+          height: 100%;
+          z-index: 100;
+        }
       }
     </style>
   </body>
