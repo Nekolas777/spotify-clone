@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-xs: 30rem;
+  --breakpoint-2xl: 100rem;
+  --breakpoint-3xl: 120rem; 
+}
+
 .border {
   border: 1px solid red;
 }
@@ -135,7 +141,7 @@ main {
 
 .songs-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 16px;
 }
 
@@ -222,7 +228,7 @@ main {
   display: grid;
   grid-template-rows: 1fr;
   grid-auto-rows: 0;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   overflow: hidden;
 }
 
@@ -266,4 +272,13 @@ main {
 /* custom utility classes */
 .option-icon {
   @apply cursor-pointer fill-[#B4B4B8] hover:fill-white transition-all duration-200 ease-out
+}
+
+@keyframes scroll-loop {
+  0% {
+    transform: translateX(0); /* Comienza desde el inicio */
+  }
+  100% {
+    transform: translateX(-100%); /* Se desplaza hasta la mitad (donde termina la copia) */
+  }
 }
