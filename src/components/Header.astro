@@ -1,14 +1,14 @@
 ---
 import NextIcon from "../icons/NextIcon.astro";
 import PreviousIcon from "../icons/PreviousIcon.astro";
-import NotificationIcon from "../icons/NotificationIcon.astro";
 import GithubIcon from "../icons/GithubIcon.astro";
 import DownloadIcon from "../icons/Download.astro";
+import HamburguerMenu from "src/icons/HamburguerMenu.astro";
 ---
 
 <header
   class='@container header-container px-5 overflow-y-auto min-h-20 flex items-center
-  max-h-[0px]  absolute top-0 z-[10] w-full rounded-t-lg'
+  max-h-[0px] bg-transparent absolute top-0 z-[10] w-full rounded-t-lg'
   data-color='transparent'
 >
   <div class='flex flex-row justify-between items-center w-full'>
@@ -32,21 +32,24 @@ import DownloadIcon from "../icons/Download.astro";
     </div>
     <div class='flex flex-row gap-5 items-center'>
       <button
-        class='px-4 pt-1 pb-1.5 rounded-3xl bg-white text-black font-semibold'
+        class='px-4 pt-1 pb-1.5 rounded-3xl bg-white text-black font-semibold hidden @md:block'
       >
         <span>Descubrir Premium</span>
       </button>
       <button
         class='px-4 pt-1 pb-1.5 rounded-3xl bg-black text-white font-semibold self-stretch
-        flex flex-row items-center gap-2 border-[1px]'
+          flex-row items-center gap-2 border-[1px] border-transparent hidden @2xl:flex'
       >
-        <figure class="fill-[#B4B4B8]">
+        <figure class='fill-[#B4B4B8]'>
           <DownloadIcon size='4' />
         </figure>
         <span class='mb-0.5'>Instalar app</span>
       </button>
-      <div class='bg-slate-950 bg-opacity-65 p-2 rounded-full cursor-pointer'>
-        <NotificationIcon />
+      <div
+        class='bg-slate-950 bg-opacity-65 p-2 rounded-full cursor-pointer'
+        onclick='toggleAsideMenu()'
+      >
+        <HamburguerMenu />
       </div>
       <GithubIcon />
     </div>
@@ -60,5 +63,21 @@ import DownloadIcon from "../icons/Download.astro";
 
   function handleNext() {
     window.history.forward();
+  }
+
+  function toggleAsideMenu() {
+    const asideMenu = document.querySelector("aside");
+
+    if (asideMenu) {
+      if (asideMenu.classList.contains("hidden")) {
+        asideMenu.classList.remove("hidden");
+        asideMenu.classList.add("flex");
+      } else if (asideMenu.classList.contains("flex")) {
+        asideMenu.classList.remove("flex");
+        asideMenu.classList.add("hidden");
+      }
+    } else {
+      console.error("Aside menu not found.");
+    }
   }
 </script>

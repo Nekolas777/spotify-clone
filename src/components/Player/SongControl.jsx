@@ -43,12 +43,12 @@ export const SongControl = () => {
   };
 
   return (
-    <div className='flex flex-row gap-3 items-center bg-black text-white'>
-      <h1 className='text-sm text-[#b3b3b3]'>
+    <div className='flex flex-row gap-3 items-center bg-black text-white w-full justify-center'>
+      <h1 className='text-xs xs:text-sm text-[#b3b3b3]'>
         {formatTime(audioRef.current?.currentTime) || "0:00"}
       </h1>
       <Slider.Root
-        className='w-[550px] relative flex items-center cursor-pointer'
+        className='w-full min-w-[75px] max-w-[550px] relative flex items-center cursor-pointer'
         value={[progress]}
         max={100}
         min={0}
@@ -61,7 +61,7 @@ export const SongControl = () => {
         <Slider.Thumb className='block w-3 h-3 bg-white rounded-full shadow-md' />
       </Slider.Root>
 
-      <h1 className='text-sm text-[#b3b3b3]'>{currentMusic.song.duration}</h1>
+      <h1 className='text-xs xs:text-sm text-[#b3b3b3]'>{currentMusic.song.duration}</h1>
     </div>
   );
 };

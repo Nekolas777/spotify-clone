@@ -40,7 +40,7 @@ export const RecentSongs = ({ songs }) => {
   };
 
   return (
-    <div className='songs-cards'>
+    <div className='@container songs-cards px-5'>
       {songs?.slice(0, 8).map((song) => {
         const isCurrentSong = song.id === currentMusic.song.id;
 
@@ -55,9 +55,8 @@ export const RecentSongs = ({ songs }) => {
           >
             <img src={song.bannerImage} className='w-16 h-16' />
             <div className='flex flex-row items-center w-full px-3'>
-              <span className='text-sm @sm:text-base font-medium flex-1'>
-                {song.title}
-              </span>
+              <span className='text-sm @sm:text-base font-medium flex-1'>{song.title}</span>
+
               {/* Mostrar el GIF o el botón Pause */}
               {isCurrentSong && isPlaying ? (
                 hoveredSongId === song.id ? (
@@ -65,7 +64,7 @@ export const RecentSongs = ({ songs }) => {
                     className='rounded-full bg-green-500 p-2 cursor-pointer flex items-center justify-center
               hover:scale-105 transition-all duration-200 ease-out shadow-below'
                     onClick={handlePauseClick}
-                  >
+                  > 
                     <Pause />
                   </div>
                 ) : (

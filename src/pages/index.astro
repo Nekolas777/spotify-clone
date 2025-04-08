@@ -10,7 +10,7 @@ import { RecentSongs } from "../components/Home/RecentSongs";
 ---
 
 <Layout title="Spotify Clone">
-  <section class="mt-20 px-5 py-2 flex flex-col gap-8">
+  <section class="mt-20 py-2 flex flex-col gap-8">
     <RecentSongs songs={songs} client:load />
     <PlaylistsRecommended playlists={playlists} />
     <FavoriteArtists artists={ artists } />
