@@ -38,7 +38,7 @@ export const CurrentSong = () => {
       </div>
       <figure
         onClick={handleFavoriteTrack}
-        className={`cursor-pointer ${
+        className={`heart hidden md:block cursor-pointer ${
           isFavorite
             ? "text-green-500 fill-green-500"
             : "text-gray-300 fill-none"
