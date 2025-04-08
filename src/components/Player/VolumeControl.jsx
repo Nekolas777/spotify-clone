@@ -45,7 +45,7 @@ export const VolumeControl = () => {
       </figure>
       <div className='block'>
         <Slider.Root
-          className='w-[100px] relative flex items-center'
+          className='relative flex items-center'
           defaultValue={[100]}
           value={[volume]}
           max={100}
