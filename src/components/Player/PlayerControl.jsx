@@ -50,7 +50,7 @@ export const PlayerControl = () => {
   }, [isPlaying]);
 
   return (
-    <div className='flex flex-col items-center gap-1.5'>
+    <div className='flex flex-col items-center gap-1 w-full flex-1'>
       <audio ref={audioRef} preload='auto' />
       <div className='flex flex-row gap-6 items-center'>
         <figure className='fill-[#B4B4B8]'>
