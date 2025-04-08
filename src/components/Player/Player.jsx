@@ -4,7 +4,7 @@ import { PlayerSettings } from "./PlayerSettings";
 
 export const Player = () => {
   return (
-    <div className="flex flex-row justify-between h-full items-center">
+    <div className="h-full flex flex-row justify-between items-center relative gap-4 sm:gap-6 w-full">
       <CurrentSong />
 
       <PlayerControl />
