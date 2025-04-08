@@ -17,7 +17,7 @@ const playlist = playlists.find((playlist) => playlist.id.toString() === id);
 const backgroundColor = playlist?.color?.dark || "#121212";
 ---
 
-<Layout title='Spotify Clone'>
+<Layout title={playlist?.name ?? "Playlist"}>
   <section class='@container mt-20 pt-3 relative'>
     <div class='flex flex-row gap-5 px-6 pb-8 relative'>
       <div
@@ -65,47 +65,42 @@ const backgroundColor = playlist?.color?.dark || "#121212";
         </div>
       </div>
     </div>
-    <div class='relative w-full'>
-      </div>
+    <div class='flex flex-row px-6 py-7 items-center justify-between relative'>
       <div
-        class='flex flex-row px-6 py-7 items-center justify-between relative'
+        id='playlist-background'
+        class='custom-bg absolute -z-[10] w-full h-[232px] left-0 top-0'
+        style={`--custom-bg-color: ${backgroundColor};`}
       >
-        <div
-          id='playlist-background'
-          class='custom-bg absolute -z-[10] w-full h-[232px] left-0 top-0'
-          style={`--custom-bg-color: ${backgroundColor};`}
-        >
-        </div>
-        <div class='flex flex-row gap-[16px] @md:gap-[20px] items-center'>
-          <div
-            class='rounded-full bg-green-500 p-[14px] @sm:p-[18px] cursor-pointer flex items-center
-          justify-center hover:scale-105 transition-scale duration-200 ease-out'
-          >
-            <Play />
-          </div>
-          <figure class='option-icon'>
-            <SaveIcon />
-          </figure>
-          <figure class='option-icon hidden @sm:block'>
-            <Shuffle size={7} />
-          </figure>
-          <figure class='option-icon hidden @md:block'>
-            <Download size='7' />
-          </figure>
-          <figure class='option-icon'>
-            <MoreOptiosnIcon />
-          </figure>
-        </div>
-        <div class='flex flex-row gap-3 items-center cursor-pointer group'>
-          <span class='font-medium mt-[-1.5px]'>Lista</span>
-          <figure
-            class='fill-[#B4B4B8] group-hover:fill-white group-hover:text-white transition-all duration-200 ease-out'
-          >
-            <ListIcon />
-          </figure>
-        </div>
       </div>
-      <MusicsTable type='all' client:load />
+      <div class='flex flex-row gap-[16px] @md:gap-[20px] items-center'>
+        <div
+          class='rounded-full bg-green-500 p-[14px] @sm:p-[18px] cursor-pointer flex items-center
+          justify-center hover:scale-105 transition-scale duration-200 ease-out'
+        >
+          <Play />
+        </div>
+        <figure class='option-icon'>
+          <SaveIcon />
+        </figure>
+        <figure class='option-icon hidden @sm:block'>
+          <Shuffle size={7} />
+        </figure>
+        <figure class='option-icon hidden @md:block'>
+          <Download size='7' />
+        </figure>
+        <figure class='option-icon'>
+          <MoreOptiosnIcon />
+        </figure>
+      </div>
+      <div class='flex flex-row gap-3 items-center cursor-pointer group'>
+        <span class='font-medium mt-[-1.5px]'>Lista</span>
+        <figure
+          class='fill-[#B4B4B8] group-hover:fill-white group-hover:text-white transition-all duration-200 ease-out'
+        >
+          <ListIcon />
+        </figure>
+      </div>
     </div>
+    <MusicsTable type='all' client:load />
   </section>
 </Layout>
