@@ -59,8 +59,8 @@ export const MusicsTable = ({ type = "all" }) => {
             </tr>
           </thead>
           <tbody>
-            {tracks?.map((song) => (
-              <TrackRow songItem={song} key={song.title} />
+            {tracks?.map((song, index) => (
+              <TrackRow songItem={song} index={index} key={song.title} />
             ))}
           </tbody>
         </table>
