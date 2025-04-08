@@ -24,7 +24,7 @@ export const RecentSongs = ({ songs }) => {
       setIsPlaying(true);
       setProgress(0);
     } else {
-      // Si es la misma canción, alternar reproducción/pausa
+      // si es la misma canción, alternar reproducción/pausa osisi
       setIsPlaying(!isPlaying);
       if (isPlaying) {
         audioRef.current.pause();
@@ -49,14 +49,15 @@ export const RecentSongs = ({ songs }) => {
             key={song.id}
             className='bg-[hsla(0,0%,100%,.07)] flex flex-row cursor-pointer select-none
           hover:bg-[hsla(0,0%,100%,.2)] transition-all duration-300 ease'
-            data-color={song.color?.accent}
+            data-color={song.color?.dark}
             onMouseEnter={() => setHoveredSongId(song.id)}
             onMouseLeave={() => setHoveredSongId(null)}
           >
             <img src={song.bannerImage} className='w-16 h-16' />
             <div className='flex flex-row items-center w-full px-3'>
-              <span className='text-base font-medium flex-1'>{song.title}</span>
-
+              <span className='text-sm @sm:text-base font-medium flex-1'>
+                {song.title}
+              </span>
               {/* Mostrar el GIF o el botón Pause */}
               {isCurrentSong && isPlaying ? (
                 hoveredSongId === song.id ? (
