@@ -36,4 +36,22 @@ export const recentlyHeards: RecentlyHeards[] = [
     description: "Con The Electric Swing Circus, Pisk, Tape Five y más",
     bannerImg: 'https://i.scdn.co/image/ab67616d00001e02d4189ca2964e92b5e5e545ed',
   },
+  {
+    id: 6,
+    title: 'Random Memories',
+    description: 'Con Daft Punk, Pharrell Williams, Nile Rodgers y más',
+    bannerImg: 'https://i.scdn.co/image/ab67616d00001e029b9b36b0e22870b9f542d937',
+  },
+  {
+    id: 7,
+    title: 'After Hours',
+    description: 'Con The Weeknd, Ariana Grande, Doja Cat y más',
+    bannerImg: 'https://i.scdn.co/image/ab67616d00001e028863bc11d2aa12b54f5aeb36',
+  },
+  {
+    id: 8,
+    title: 'Divide',
+    description: 'Con Ed Sheeran, Taylor Swift, Justin Bieber y más',
+    bannerImg: 'https://i.scdn.co/image/ab67616d00001e02003aae2a7212c466f7a1bcfe',
+  },
 ];
