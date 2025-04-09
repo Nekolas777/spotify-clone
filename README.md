@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img src="public/spotify-logo.webp" alt="Project logo" width="80"></a>
+ <img src="public/spotify-logo.webp" alt="Project logo" width="100"></a>
 </p>
 <h3 align="center">Spotify Clone</h3>
 
@@ -24,11 +24,10 @@
   - [2️⃣ Instalar dependencias](#2️⃣-instalar-dependencias)
   - [3️⃣ Iniciar el servidor de desarrollo](#3️⃣-iniciar-el-servidor-de-desarrollo)
 - [🎨 Screenshots \& Previews ](#-screenshots--previews-)
-  - [🔑 Página de Inicio de Sesión](#-página-de-inicio-de-sesión)
-  - [🚀 Hero de Pagina Principal](#-hero-de-pagina-principal)
-  - [📋 Tabla de Eventos](#-tabla-de-eventos)
-  - [📝 Creación de Evento](#-creación-de-evento)
-  - [👀 Previsualización de Evento](#-previsualización-de-evento)
+  - [🏠 Página de inicio](#-página-de-inicio)
+  - [🎤 Artistas populares](#-artistas-populares)
+  - [📑 Página de Playlist](#-página-de-playlist)
+  - [❤️ Página de Canciones Favoritas](#️-página-de-canciones-favoritas)
 - [📐 Project Structure ](#-project-structure-)
 - [⛏️ Technology Stack ](#️-technology-stack-)
 - [✍️ Authors ](#️-authors-)
@@ -84,20 +83,22 @@ Ahora puedes abrir tu navegador y navegar a `http://localhost:4321` para ver la 
 
 ## 🎨 Screenshots & Previews <a name="screenshots"></a>
 
-### 🔑 Página de Inicio de Sesión  
-<img src="public/design/ss_login.jpeg" alt="Página de Inicio de Sesión" width="100%">
+### 🏠 Página de inicio
+<i class="fas fa-user-circle"></i>
+<img src="public/design/home_one.png" alt="Pantalla de inicio de sesión, muestra el acceso a la plataforma de música" width="100%">
 
-### 🚀 Hero de Pagina Principal 
-<img src="public/design/ss_hero.png" alt="Hero" width="100%">
+### 🎤 Artistas populares
+<i class="fas fa-microphone-alt"></i>
+<img src="public/design/home_two.png" alt="Sección de artistas populares con opciones de exploración de música y géneros" width="100%">
 
-### 📋 Tabla de Eventos  
-<img src="public/design/ss_table.jpeg" alt="Tabla de Eventos" width="100%">
+### 📑 Página de Playlist
+<i class="fas fa-list-ul"></i>
+<img src="public/design/playlist.png" alt="Vista detallada de la lista de reproducción con canciones organizadas y accesibles" width="100%">
 
-### 📝 Creación de Evento  
-<img src="public/design/ss_event.png" alt="Creación de Evento" width="100%">
+### ❤️ Página de Canciones Favoritas
+<i class="fas fa-heart"></i>
+<img src="public/design/favorites.png" alt="Página donde se visualizan las canciones favoritas del usuario con opciones de reproducción" width="100%">
 
-### 👀 Previsualización de Evento  
-<img src="public/design/ss_preview.jpeg" alt="Previsualización de Evento" width="100%">
 
 
 ## 📐 Project Structure <a name="project_structure"></a>
@@ -106,55 +107,42 @@ Ahora puedes abrir tu navegador y navegar a `http://localhost:4321` para ver la 
 .
 └── src
     ├── assets
-    │   # Contiene recursos estáticos como imágenes y estilos.
-    ├── features
-    ├── auth
-    │   ├── context
-    │   │   # Contextos de autenticación para la gestión del estado global.
-    │   ├── hooks
-    │   │   # Hooks personalizados relacionados con autenticación.
-    │   ├── model
-    │   │   # Modelos de datos para la autenticación.
-    │   ├── pages
-    │   │   # Páginas relacionadas con autenticación (login, registro, recuperación de contraseña, etc.).
-    │   └── service
-    │       # Servicios para manejar autenticación y llamadas a la API.
-    │       
-    ├── events
-    │   ├── components
-    │   │   # Componentes reutilizables para la gestión de eventos.
-    │   ├── hooks
-    │   │   # Hooks personalizados relacionados con eventos.
-    │   ├── model
-    │   │   # Modelos de datos para eventos.
-    │   ├── pages
-    │   │   # Páginas donde se muestran y gestionan eventos.
-    │   ├── routes
-    │   │   # Definición de rutas específicas para eventos.
-    │   └── service
-    │       # Servicios para la gestión de eventos y conexión con la API.
-    │
-    ├── public
-    │   # Contiene archivos públicos como index.html e íconos.
+    │   # Contiene recursos estáticos como imágenes, fuentes y estilos globales.
+    ├── components
+    │   # Componentes reutilizables de la interfaz de usuario (UI) como botones, tarjetas, formularios, etc.
+    ├── data
+    │   # Archivos y datos estáticos, como archivos JSON, Markdown, o constantes que contienen datos de la aplicación.
+    ├── icons
+    │   # Contiene los íconos utilizados en la aplicación (pueden ser SVGs, fuentes de íconos, etc.).
+    ├── layouts
+    │   # Componentes de diseño que estructuran la página como header, footer, sidebar, etc.
+    ├── pages
+    │   # Páginas que corresponden a diferentes rutas de la aplicación.
+    │   └── index.astro
+    │   └── about.astro
+    │   └── blog.astro
+    │   └── [slug].astro   # Páginas dinámicas con rutas parametrizadas.
     ├── router
-    │   # Configuración y gestión de rutas de la aplicación.
-    ├── shared
-    │   # Elementos compartidos como utilidades, helpers y tipos globales.
-    └── main.tsx
-        # Archivo principal que monta la aplicación en React.
+    │   # Si usas rutas personalizadas, configuraciones de la navegación.
+    ├── store
+    │   # Gestión de estado global de la aplicación si usas algo como @astro/store o cualquier biblioteca de estado.
+    ├── styles
+    │   # Archivos CSS, SCSS o cualquier archivo de estilo global de la aplicación.
+    ├── utils
+    │   # Funciones y helpers reutilizables en toda la aplicación.
+    └── astro.config.mjs
+        # Configuración global de Astro.
+
 ```
 
-## ⛏️ Technology Stack <a name = "tech_stack"></a>
+## ⛏️ Technology Stack <a name="tech_stack"></a>
 
-- [TypeScript](https://www.typescriptlang.org/) - Superset de JavaScript que añade tipado estático.  
-- [React](https://react.dev/) - Biblioteca de JavaScript para la construcción de interfaces de usuario.  
-- [React Router](https://reactrouter.com/) - Biblioteca para la gestión de rutas en aplicaciones React.  
-- [Vite](https://vitejs.dev/) - Herramienta de desarrollo para construir aplicaciones rápidas con React.  
-- [Tailwind CSS](https://tailwindcss.com/) - Framework de CSS para el diseño de interfaces con clases utilitarias.  
+- [Astro](https://astro.build/) – Framework moderno para construir sitios rápidos y ligeros, con soporte para múltiples frameworks de componentes.
+- [React](https://react.dev/) – Biblioteca de JavaScript para construir interfaces interactivas y reutilizables.
+- [Tailwind CSS](https://tailwindcss.com/) – Framework de CSS con clases utilitarias para diseñar interfaces rápidas y responsivas.
+- [Zustand](https://zustand-demo.pmnd.rs/) – Biblioteca ligera para la gestión de estado global en aplicaciones React.
+- [Swup](https://swup.js.org/) – Biblioteca para transiciones fluidas entre páginas sin recargar el navegador (page transitions).
 
 ## ✍️ Authors <a name = "authors"></a>
 
 - [@Nekolas777](https://github.com/Nekolas777)
-- [@sergio185678](https://github.com/sergio185678)
-- [@asotito](https://github.com/asotito)
-- [@KevinDextreMiguel](https://github.com/KevinDextreMiguel)
