@@ -1,9 +1,6 @@
 # build output
 dist/
 
-# vsual studio code
-.vscode/
-
 # generated types
 .astro/
 
