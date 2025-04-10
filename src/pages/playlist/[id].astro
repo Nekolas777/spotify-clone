@@ -37,11 +37,11 @@ const backgroundColor = playlist?.color?.dark || "#121212";
       <div class='flex flex-col text-white justify-end gap-3 truncate'>
         <span class=''>{playlist?.type} pública</span>
         <div
-          class='relative overflow-hidden whitespace-nowrap @md:overflow-auto @md:whitespace-normal'
+          class='relative overflow-visible whitespace-nowrap @md:overflow-visible @md:whitespace-normal'
         >
           <h1
-            class='text-4xl @2xl:text-5xl @4xl:text-6xl font-bold ml-[-3px] inline-block
-            whitespace-nowrap animate-[scroll-loop_20s_linear_infinite] @md:block @md:whitespace-nowrap overflow-hidden @md:animate-none'
+            class='text-4xl @2xl:text-5xl @4xl:text-5xl font-bold ml-[-3px] inline-block
+            whitespace-nowrap animate-[scroll-loop_20s_linear_infinite] @md:block @md:whitespace-nowrap @md:animate-none'
           >
             <span>{playlist?.name}</span>
             <span class='inline @md:hidden'>&nbsp;</span>
