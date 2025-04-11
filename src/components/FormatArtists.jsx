@@ -5,9 +5,9 @@ const FormatArtists = ({ artists }) => {
     <>
       {artists.map((artist, index) => (
         <React.Fragment key={index}>
-          <a href='#' className='hover:underline'>
+          <p className='inline-block hover:underline cursor-pointer'>
             {artist}
-          </a>
+          </p>
           <span className='text-gray-300'>
             {index === artists.length - 1 ? " " : ", "}
           </span>
