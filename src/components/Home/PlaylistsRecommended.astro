@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { Playlist } from "../../data/playlists";
 import { Play } from "../../icons/Play.jsx";
 
@@ -9,15 +10,17 @@ interface Props {
 const { playlists } = Astro.props;
 ---
 
-<div class="@container px-5">
+<div class='@container px-5'>
   <div class='flex flex-row justify-between items-center'>
     <h1
       class='text-2xl font-bold tracking-normal cursor-pointer hover:underline'
+      aria-label='Sección de playlists recomendadas'
     >
       Hecho para Nekolas
     </h1>
     <span
       class='text-slate-300 text-sm tracking-wide font-bold cursor-pointer hover:underline hidden @sm:block'
+      aria-label='Mostrar todas las playlists recomendadas'
     >
       Mostrar todos
     </span>
@@ -31,21 +34,38 @@ const { playlists } = Astro.props;
             hover:bg-[#1f1f1f] transition-all duration-200 ease'
             href={`/playlist/${playlist.id}`}
             data-color={playlist.color?.accent}
-            data-astro-reload
+            aria-label={`Abrir playlist: ${playlist.name}`}
           >
             <div class='flex relative'>
-              <img src={playlist.bannerImg} class='w-full rounded-md' />
+              <Image
+                src={playlist.bannerImg}
+                inferSize
+                loading='eager'
+                alt={`Portada de la playlist ${playlist.name}`}
+                class='w-full rounded-md'
+              />
               <div
                 class='shadow-below rounded-full bg-green-500 p-3.5 cursor-pointer 
           flex items-center justify-center absolute bottom-0 right-0 mr-2 mb-2
           hover:scale-105 transition-all duration-200 ease-out'
+                aria-label={`Reproducir playlist ${playlist.name}`}
               >
                 <Play />
               </div>
             </div>
             <div class='flex flex-col gap-1 pt-2'>
-              <h3 class='text-base font-medium'>{playlist.name}</h3>
-              <span class='text-[#b3b3b3] text-wrap'>{playlist.author}</span>
+              <h1
+                class='text-base font-medium'
+                aria-label={`Nombre de la playlist: ${playlist.name}`}
+              >
+                {playlist.name}
+              </h1>
+              <span
+                class='text-[#b3b3b3] text-wrap'
+                aria-label={`Descripción de la playlist: ${playlist.description}`}
+              >
+                {playlist.author}
+              </span>
             </div>
           </a>
         );
