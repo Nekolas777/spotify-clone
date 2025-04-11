@@ -1,6 +1,7 @@
 ---
 import { recentlyHeards } from "src/data/recently-heards";
 import { Play } from "../../icons/Play.jsx";
+import { Image } from "astro:assets";
 ---
 
 <div class='@container px-5'>
@@ -24,7 +25,12 @@ import { Play } from "../../icons/Play.jsx";
           hover:bg-[hsla(0,0%,100%,.07)] transition-all duration-300 ease'
         >
           <div class='flex relative'>
-            <img src={song.bannerImg} class='w-full' />
+            <Image
+              src={song.bannerImg}
+              inferSize
+              alt={`Portada de la canción ${song.title}`}
+              class='w-full'
+            />
             <div
               class='shadow-below rounded-full bg-green-500 p-3.5 cursor-pointer
               flex items-center justify-center absolute bottom-0 right-0 mr-2 mb-2
@@ -34,8 +40,16 @@ import { Play } from "../../icons/Play.jsx";
             </div>
           </div>
           <div class='flex flex-col gap-1 pt-2'>
-            <h3 class='text-base font-medium'>{song.title}</h3>
-            <span class='text-[#b3b3b3] text-wrap text-sm'>
+            <h1
+              class='text-base font-medium'
+              aria-label={`Nombre de la canción: ${song.title}`}
+            >
+              {song.title}
+            </h1>
+            <span
+              class='text-[#b3b3b3] text-wrap text-sm'
+              aria-label={`Descripción de la canción: ${song.description}`}
+            >
               {song.description}
             </span>
           </div>
