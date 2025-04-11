@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { formatTime } from "../../utils/helpers/formatTime";
 
 export const SongControl = () => {
-  const { currentMusic, progress, setProgress, setIsPlaying, audioRef } = usePlayerStore();
+  const { currentMusic, progress, setProgress, setIsPlaying, audioRef } =
+    usePlayerStore();
 
   useEffect(() => {
     const handleTimeUpdate = () => {
@@ -19,7 +20,7 @@ export const SongControl = () => {
       setProgress(0);
       setIsPlaying(false);
       audioRef.current.currentTime = 0;
-    }
+    };
 
     if (audioRef.current) {
       /* console.log("AudioRef: ", audioRef.current); */
@@ -44,7 +45,10 @@ export const SongControl = () => {
 
   return (
     <div className='flex flex-row gap-3 items-center bg-black text-white w-full justify-center'>
-      <h1 className='text-xs xs:text-sm text-[#b3b3b3]'>
+      <h1
+        className='text-xs xs:text-sm text-[#b3b3b3]'
+        aria-label='Tiempo actual'
+      >
         {formatTime(audioRef.current?.currentTime) || "0:00"}
       </h1>
       <Slider.Root
@@ -54,14 +58,23 @@ export const SongControl = () => {
         min={0}
         step={1}
         onValueChange={handleValueChange}
+        aria-label='Control deslizante progreso de la canción'
       >
         <Slider.Track className='bg-gray-600 relative flex-grow h-1 rounded-full'>
           <Slider.Range className='absolute bg-green-500 h-full rounded-full' />
         </Slider.Track>
-        <Slider.Thumb className='block w-3 h-3 bg-white rounded-full shadow-md' />
+        <Slider.Thumb
+          className='block w-3 h-3 bg-white rounded-full shadow-md'
+          aria-label='Control deslizante para ajustar el progreso de la canción'
+          aria-valuenow={0}
+        />
       </Slider.Root>
-
-      <h1 className='text-xs xs:text-sm text-[#b3b3b3]'>{currentMusic.song.duration}</h1>
+      <h1
+        className='text-xs xs:text-sm text-[#b3b3b3]'
+        aria-label='Duración total'
+      >
+        {currentMusic.song.duration}
+      </h1>
     </div>
   );
 };

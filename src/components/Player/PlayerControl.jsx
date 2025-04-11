@@ -52,18 +52,37 @@ export const PlayerControl = () => {
     <div className='flex flex-col items-center gap-1 w-full flex-1'>
       <audio ref={audioRef} preload='auto' />
       <div className='flex flex-row gap-6 items-center'>
-        <figure className='hidden sm:block fill-[#B4B4B8]'>
-          <Shuffle size={4} />
+        <figure
+          className='hidden sm:block fill-[#B4B4B8]'
+          aria-label='Activar reproducción aleatoria'
+          role='button'
+          tabIndex={0}
+        >
+          <Shuffle
+            aria-label='Retroceder canción'
+            role='button'
+            tabIndex={0}
+            size={4}
+          />
         </figure>
-        <BackwardStep />
+        <BackwardStep
+          aria-label='Retroceder canción'
+          role='button'
+          tabIndex={0}
+        />
         <button
           onClick={handlePlayButton}
           className='p-2 bg-white rounded-full cursor-pointer hover:opacity-90 hover:scale-105'
+          aria-label={isPlaying ? "Pausar canción" : "Reproducir canción"}
         >
           {isPlaying ? <Pause size='16px' /> : <Play size='16px' />}
         </button>
-        <ForwardStep />
-        <figure className="hidden sm:block">
+        <ForwardStep aria-label='Avanzar canción' role='button' tabIndex={0} />
+        <figure
+          className='hidden sm:block'
+          aria-label='Repetir canción'
+          role='button'
+        >
           <Repeat />
         </figure>
       </div>

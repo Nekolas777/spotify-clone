@@ -8,6 +8,7 @@ import SaveIcon from "../../icons/SaveIcon.astro";
 import ListIcon from "../../icons/ListIcon.astro";
 import { MusicsTable } from "../../components/MusicsTable.jsx";
 import { playlists } from "../../data/playlists";
+import { Image } from "astro:assets";
 
 const { id } = Astro.params;
 
@@ -28,10 +29,14 @@ const backgroundColor = playlist?.color?.dark || "#121212";
       >
       </div>
       <div class='flex'>
-        <img
-          src={playlist?.bannerImg}
+        <Image
+          src={playlist?.bannerImg ?? "/spotify-logo.webp"}
+          alt=`Portada de la playlist ${playlist?.name}`}
           class='min-w-32 min-h-32 w-full h-full max-w-56 max-h-56'
           style='box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);'
+          width={128}
+          height={128}
+          loading={"eager"}
         />
       </div>
       <div class='flex flex-col text-white justify-end gap-3 truncate'>
@@ -54,8 +59,11 @@ const backgroundColor = playlist?.color?.dark || "#121212";
         </div>
         <span class='text-sm @2xl:text-base'>{playlist?.description}</span>
         <div class='flex flex-row gap-2 items-center mt-1.5'>
-          <img
-            src={playlist?.profileImg}
+          <Image
+            src={playlist?.profileImg ?? "/spotify-logo.webp"}
+            alt={`Foto de perfil del autor ${playlist?.author}`}
+            width={24}
+            height={24}
             class='max-w-5 @2xl:max-w-6 rounded-full'
           />
           <p class='text-sm @2xl:text-base mt-[-2px]'>
@@ -79,16 +87,22 @@ const backgroundColor = playlist?.color?.dark || "#121212";
         >
           <Play />
         </div>
-        <figure class='option-icon'>
+        <figure class='option-icon' aria-label='Guardar playlist'>
           <SaveIcon />
         </figure>
-        <figure class='option-icon hidden @sm:block'>
+        <figure
+          class='option-icon hidden @sm:block'
+          aria-label='Reproducir aleatoriamente'
+        >
           <Shuffle size={7} />
         </figure>
-        <figure class='option-icon hidden @md:block'>
+        <figure
+          class='option-icon hidden @md:block'
+          aria-label='Descargar playlist'
+        >
           <Download size='7' />
         </figure>
-        <figure class='option-icon'>
+        <figure class='option-icon' aria-label='Más opciones'>
           <MoreOptiosnIcon />
         </figure>
       </div>
@@ -96,6 +110,7 @@ const backgroundColor = playlist?.color?.dark || "#121212";
         <span class='font-medium mt-[-1.5px]'>Lista</span>
         <figure
           class='fill-[#B4B4B8] group-hover:fill-white group-hover:text-white transition-all duration-200 ease-out'
+          aria-label='Ver lista de reproducción'
         >
           <ListIcon />
         </figure>

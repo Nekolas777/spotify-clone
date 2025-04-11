@@ -27,7 +27,7 @@
   - [🏠 Página de inicio](#-página-de-inicio)
   - [🎤 Artistas populares](#-artistas-populares)
   - [📑 Página de Playlist](#-página-de-playlist)
-  - [❤️ Página de Canciones Favoritas](#️-página-de-canciones-favoritas)
+  - [📊 Visualización de Métricas](#-visualización-de-métricas)
 - [📐 Project Structure ](#-project-structure-)
 - [⛏️ Technology Stack ](#️-technology-stack-)
 - [✍️ Authors ](#️-authors-)
@@ -95,10 +95,9 @@ Ahora puedes abrir tu navegador y navegar a `http://localhost:4321` para ver la 
 <i class="fas fa-list-ul"></i>
 <img src="public/design/playlist.png" alt="Vista detallada de la lista de reproducción con canciones organizadas y accesibles" width="100%">
 
-### ❤️ Página de Canciones Favoritas
-<i class="fas fa-heart"></i>
-<img src="public/design/favorites.png" alt="Página donde se visualizan las canciones favoritas del usuario con opciones de reproducción" width="100%">
-
+### 📊 Visualización de Métricas
+<i class="fas fa-chart-bar"></i>
+<img src="public/design/metrics.png" alt="Página donde se visualizan las métricas de rendimiento, accesibilidad, SEO, y otras estadísticas clave del sitio web" width="100%">
 
 
 ## 📐 Project Structure <a name="project_structure"></a>

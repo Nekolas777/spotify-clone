@@ -65,17 +65,17 @@ export const MusicsTable = ({ type = "all" }) => {
           </tbody>
         </table>
       ) : (
-        <div className='flex flex-col gap-4 items-center justify-center h-full pb-10'>
+        <div className='flex flex-col gap-4 items-center justify-center h-full pb-10 text-center'>
           <img
             src='/img/no-favorites.png'
             alt='No songs found'
             className='h-18 w-22'
           />
           <div className='flex flex-col gap-2 items-center justify-center'>
-            <p className='text-green-500 text-xl font-semibold'>
+            <p className='text-green-500 text-lg sm:text-xl font-semibold'>
               No tienes canciones favoritas
             </p>
-            <p className='text-slate-50 text-base'>
+            <p className='text-slate-50 text-sm sm:text-base'>
               Agrega canciones a tu lista de favoritos para verlas aquí.
             </p>
           </div>

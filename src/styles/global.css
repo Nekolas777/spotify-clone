@@ -3,7 +3,11 @@
 @theme {
   --breakpoint-xs: 30rem;
   --breakpoint-2xl: 100rem;
-  --breakpoint-3xl: 120rem;
+  --breakpoint-3xl: 120rem; 
+}
+
+.border {
+  border: 1px solid red;
 }
 
 html {
@@ -248,13 +252,16 @@ main {
 }
 
 .header-container {
-  transition: background-color 0.3s linear;
+  transition: opacity 0.3s linear;
 }
 
 
 .header-scrolled {
-  background-color: var(--header-background-color, initial);
-  transition: background-color 0.3s ease;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.6), 
+      rgba(0, 0, 0, 0.6)
+  ), var(--header-background-color, initial);
+  transition: opacity 0.3s ease;
 }
 
 .playlist-active {
@@ -269,9 +276,9 @@ main {
 
 @keyframes scroll-loop {
   0% {
-    transform: translateX(0);
+    transform: translateX(0); /* Comienza desde el inicio */
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-100%); /* Se desplaza hasta la mitad (donde termina la copia) */
   }
 }
