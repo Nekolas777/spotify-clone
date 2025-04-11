@@ -7,6 +7,7 @@ import SaveIcon from "src/icons/SaveIcon.astro";
 import { Shuffle } from "src/icons/Shuffle";
 import Layout from "src/layouts/Layout.astro";
 import MoreOptiosnIcon from "../../../icons/MoreOptionsIcon.astro";
+import { Image } from "astro:assets";
 
 const backgroundColor = "#5038A0";
 ---
@@ -22,10 +23,14 @@ const backgroundColor = "#5038A0";
       >
       </div>
       <div class='flex'>
-        <img
+        <Image
           src='https://misc.scdn.co/liked-songs/liked-songs-300.jpg'
+          alt='Portada de la playlist Favoritas'
           class='min-w-32 min-h-32 w-full h-full max-w-56 max-h-56'
           style='box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);'
+          width={128}
+          height={128}
+          loading={"eager"}
         />
       </div>
       <div class='flex flex-col text-white justify-end gap-3 truncate'>
@@ -50,9 +55,12 @@ const backgroundColor = "#5038A0";
           Guarda tus canciones favoritas y escúchalas en cualquier momento.
         </span>
         <div class='flex flex-row gap-2 items-center mt-1.5'>
-          <img
+          <Image
             src='https://avatars.githubusercontent.com/u/120282675?v=4'
             class='max-w-5 @2xl:max-w-6 rounded-full'
+            alt='Foto de perfil de Nekolas Esteban'
+            width={24}
+            height={24}
           />
           <p class='text-sm @2xl:text-base mt-[-2px]'>
             <span class='font-bold'>Nekolas Esteban</span> • 7 canciones, 28 min,
@@ -74,16 +82,22 @@ const backgroundColor = "#5038A0";
         >
           <Play />
         </div>
-        <figure class='option-icon'>
+        <figure class='option-icon' aria-label='Guardar playlist'>
           <SaveIcon />
         </figure>
-        <figure class='option-icon hidden @sm:block'>
+        <figure
+          class='option-icon hidden @sm:block'
+          aria-label='Reproducir aleatoriamente'
+        >
           <Shuffle size={7} />
         </figure>
-        <figure class='option-icon hidden @md:block'>
+        <figure
+          class='option-icon hidden @md:block'
+          aria-label='Descargar playlist'
+        >
           <Download size='7' />
         </figure>
-        <figure class='option-icon'>
+        <figure class='option-icon' aria-label='Más opciones'>
           <MoreOptiosnIcon />
         </figure>
       </div>
