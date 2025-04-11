@@ -20,9 +20,9 @@ export const VolumeControl = () => {
   };
 
   const handleVolumeClick = () => {
-    if(!audioRef?.current) return;
+    if (!audioRef?.current) return;
 
-    if(volume === 0) {
+    if (volume === 0) {
       audioRef.current.volume = previousVolume / 100;
       setVolume(previousVolume);
     } else {
@@ -30,11 +30,16 @@ export const VolumeControl = () => {
       audioRef.current.volume = 0;
       setVolume(0);
     }
-  }
+  };
 
   return (
     <div className='flex flex-row items-center gap-2 w-full'>
-      <figure onClick={handleVolumeClick}>
+      <figure
+        onClick={handleVolumeClick}
+        tabIndex={0}
+        role='button'
+        aria-label={volume === 0 ? "Silenciar volumen" : "Activar volumen"}
+      >
         {volume === 0 ? (
           <VolumeMute />
         ) : volume < 50 ? (
@@ -52,11 +57,15 @@ export const VolumeControl = () => {
           min={0}
           step={1}
           onValueChange={handleVolumeChange}
+          aria-label='Control deslizante de volumen'
         >
           <Slider.Track className='bg-gray-600 relative flex-grow h-1 rounded-full'>
             <Slider.Range className='absolute bg-green-500 h-full rounded-full' />
           </Slider.Track>
-          <Slider.Thumb className='block w-3 h-3 bg-white rounded-full shadow-md' />
+          <Slider.Thumb
+            className='block w-3 h-3 bg-white rounded-full shadow-md'
+            aria-label='Control de volumen'
+          />
         </Slider.Root>
       </div>
     </div>
