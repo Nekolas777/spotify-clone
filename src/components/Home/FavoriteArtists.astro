@@ -1,6 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import type { Artist } from "../../data/artists";
-import {Play} from "../../icons/Play.jsx";
+import { Play } from "../../icons/Play.jsx";
 
 interface Props {
   artists: Artist[];
@@ -9,43 +10,58 @@ interface Props {
 const { artists } = Astro.props;
 ---
 
-<div class="@container px-5">
-  <div class="flex flex-row justify-between items-center">
+<div class='@container px-5'>
+  <div class='flex flex-row justify-between items-center'>
     <h1
-      class="text-2xl font-bold tracking-normal cursor-pointer hover:underline"
+      class='text-2xl font-bold tracking-normal cursor-pointer hover:underline'
     >
       Artistas populares
     </h1>
     <span
-      class="text-slate-300 text-sm tracking-wide font-bold cursor-pointer hover:underline hidden @sm:block"
+      class='text-slate-300 text-sm tracking-wide font-bold cursor-pointer hover:underline hidden @sm:block'
     >
       Mostrar todos
     </span>
   </div>
-  <div class="mt-5 popular-artists-container -mx-3">
+  <div class='mt-5 popular-artists-container -mx-3'>
     {
       artists.map((artist) => {
         return (
           <article
-            class="recommended-card p-3 bg-transparent cursor-pointer rounded-lg
-        hover:bg-[#1f1f1f] transition-all duration-200 ease"
+            class='recommended-card p-3 bg-transparent cursor-pointer rounded-lg
+        hover:bg-[#1f1f1f] transition-all duration-200 ease'
+            aria-label={`Seleccionar artista: ${artist.name}`}
           >
-            <div class="flex relative">
-              <img
+            <div class='flex relative'>
+              <Image
                 src={artist.profileImg}
-                class="rounded-full w-full object-cover"
+                inferSize
+                alt={`Foto de perfil del artista ${artist.name}`}
+                class='rounded-full w-full object-cover'
               />
               <div
-                class="shadow-below rounded-full bg-green-500 p-3.5 cursor-pointer
+                class='shadow-below rounded-full bg-green-500 p-3.5 cursor-pointer
           flex items-center justify-center absolute bottom-0 right-0 mr-2 mb-2
-          hover:scale-105 transition-all duration-200 ease-out"
+          hover:scale-105 transition-all duration-200 ease-out'
+                aria-label={`Reproducir canciones de ${artist.name}`}
+                role='button'
               >
                 <Play />
               </div>
             </div>
-            <div class="flex flex-col gap-1 pt-2">
-              <h3 class="text-base font-medium">{artist.name}</h3>
-              <span class="text-[#b3b3b3] text-wrap">Artista</span>
+            <div class='flex flex-col gap-1 pt-2'>
+              <h1
+                class='text-base font-medium'
+                aria-label={`Nombre del artista: ${artist.name}`}
+              >
+                {artist.name}
+              </h1>
+              <span
+                class='text-[#b3b3b3] text-wrap'
+                aria-label={`Role del artista`}
+              >
+                Artista
+              </span>
             </div>
           </article>
         );
