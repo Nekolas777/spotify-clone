@@ -52,10 +52,20 @@ export const RecentSongs = ({ songs }) => {
             data-color={song.color?.dark}
             onMouseEnter={() => setHoveredSongId(song.id)}
             onMouseLeave={() => setHoveredSongId(null)}
+            aria-label={`Seleccionar canción: ${song.title}`}
           >
-            <img src={song.bannerImage} className='w-16 h-16' />
+            <img
+              src={song.bannerImage}
+              alt={`Portada de la canción ${song.title}`}
+              className='w-16 h-16'
+            />
             <div className='flex flex-row items-center w-full px-3'>
-              <span className='text-sm @sm:text-base font-medium flex-1'>{song.title}</span>
+              <span
+                className='text-sm @sm:text-base font-medium flex-1'
+                aria-label={`Título de la canción: ${song.title}`}
+              >
+                {song.title}
+              </span>
 
               {/* Mostrar el GIF o el botón Pause */}
               {isCurrentSong && isPlaying ? (
@@ -64,13 +74,15 @@ export const RecentSongs = ({ songs }) => {
                     className='rounded-full bg-green-500 p-2 cursor-pointer flex items-center justify-center
               hover:scale-105 transition-all duration-200 ease-out shadow-below'
                     onClick={handlePauseClick}
-                  > 
+                    role='button'
+                    aria-label='Pausar canción'
+                  >
                     <Pause />
                   </div>
                 ) : (
                   <img
                     src='/img/current-music.gif'
-                    alt='Playing'
+                    alt='Canción en reproducción'
                     className='w-4 h-4 mr-2'
                   />
                 )
@@ -79,6 +91,8 @@ export const RecentSongs = ({ songs }) => {
                   className='rounded-full bg-green-500 p-2 cursor-pointer flex items-center justify-center
           hover:scale-105 transition-all duration-200 ease-out shadow-below'
                   onClick={() => handleSongClick(song)}
+                  role='button'
+                  aria-label={`Reproducir canción: ${song.title}`}
                 >
                   <Play />
                 </div>
