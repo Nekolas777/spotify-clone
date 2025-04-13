@@ -35,7 +35,9 @@ const { artists } = Astro.props;
             <div class='flex relative'>
               <Image
                 src={artist.profileImg}
-                inferSize
+                width={200}
+                height={200}
+                loading='eager'
                 alt={`Foto de perfil del artista ${artist.name}`}
                 class='rounded-full w-full object-cover'
               />
