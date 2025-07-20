@@ -20,7 +20,7 @@ export const playlists: Playlist[] = [
     author: "Monstercat",
     description: "Compilation of the best Monstercat songs that bring you back to the good old days",
     profileImg: "https://i.scdn.co/image/ab6761610000f1784783a51dd63610bafeba1f09",
-    bannerImg: "https://i2o.scdn.co/image/ab67706c0000cfa30db8ac2002256907a20af97d"
+    bannerImg: "https://i1.sndcdn.com/artworks-000279517538-os4qq0-t500x500.jpg"
   },
   {
     id: 2,

@@ -43,6 +43,7 @@ const { playlists } = Astro.props;
                 loading='eager'
                 alt={`Portada de la playlist ${playlist.name}`}
                 class='w-full rounded-md'
+                onerror={"this.onerror=null;this.src='/img/fallback.jpg';"}
               />
               <div
                 class='shadow-below rounded-full bg-green-500 p-3.5 cursor-pointer 
